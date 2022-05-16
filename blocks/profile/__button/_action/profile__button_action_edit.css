@@ -1,0 +1,31 @@
+.profile__button_action_edit {
+  border: 1px solid white;
+  background-image: url(../../../../images/button-edit.svg);
+  background-size: 48%;
+  position: relative;
+  top: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+@media screen and (max-width: 810px) {
+  .profile__button_action_edit {
+    width: calc((100vw - 320px)/(810 - 320) * (24 - 18) + 18px);
+    height: calc((100vw - 320px)/(810 - 320) * (24 - 18) + 18px);
+    top: calc((100vw - 320px)/(810 - 320) * (4 - 1) + 1px);
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .profile__button_action_edit {
+    width: calc((100vw - 320px)/(810 - 320) * (24 - 18) + 18px);
+    height: calc((100vw - 320px)/(810 - 320) * (24 - 18) + 18px);
+    top: calc((100vw - 320px)/(810 - 320) * (4 - 1) + 1px);
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .profile__button_action_edit {
+    grid-column: 3;
+  }
+}

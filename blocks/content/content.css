@@ -1,0 +1,18 @@
+.content {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1024px) {
+  .content {
+    margin-left: calc((100vw - 768px)/(1024 - 768) * (72 - 16) + 16px);
+    margin-right: calc((100vw - 768px)/(1024 - 768) * (72 - 16) + 16px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    margin-left: 19px;
+    margin-right: 19px;
+  }
+}

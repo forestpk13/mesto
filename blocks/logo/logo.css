@@ -1,0 +1,20 @@
+.logo {
+  max-width: 142px;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .logo{
+    margin-left: calc((100vw - 880px)/(1024 - 880) * (0 - 27) + 27px);
+    max-width: calc((100vw - 880px)/(1024 - 880) * (142 - 104) + 104px);
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .logo{
+    margin-left: 27px;
+    max-width: 104px;
+  }
+}
