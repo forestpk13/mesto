@@ -1,5 +1,5 @@
 .profile__name {
-  max-width: 350px;
+  max-width: 330px;
   margin: 0;
   font-family: 'Inter';
   font-weight: 500;
@@ -11,21 +11,11 @@
   text-rendering: optimizeLegibility;
 }
 
-@media screen and (max-width: 880px) {
-  .profile__name {
-    font-size: calc((100vw - 320px)/(880 - 320) * (42 - 27) + 27px);
-    line-height: 1.21;
-  }
-}
-
-@media screen and (max-width: 475px) {
+@media screen and (max-width: 810px) {
   .profile__name {
     grid-column: 2;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .profile__name {
-    font-size: 27px;
+    max-width: 228px;
+    font-size:27px;
+    line-height: 1.21;
   }
 }

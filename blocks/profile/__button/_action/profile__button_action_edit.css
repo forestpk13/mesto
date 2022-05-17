@@ -10,22 +10,9 @@
 
 @media screen and (max-width: 810px) {
   .profile__button_action_edit {
-    width: calc((100vw - 320px)/(810 - 320) * (24 - 18) + 18px);
-    height: calc((100vw - 320px)/(810 - 320) * (24 - 18) + 18px);
-    top: calc((100vw - 320px)/(810 - 320) * (4 - 1) + 1px);
-  }
-}
-
-@media screen and (max-width: 810px) {
-  .profile__button_action_edit {
-    width: calc((100vw - 320px)/(810 - 320) * (24 - 18) + 18px);
-    height: calc((100vw - 320px)/(810 - 320) * (24 - 18) + 18px);
-    top: calc((100vw - 320px)/(810 - 320) * (4 - 1) + 1px);
-  }
-}
-
-@media screen and (max-width: 475px) {
-  .profile__button_action_edit {
     grid-column: 3;
+    width: 18px;
+    height: 18px;
+    top: 1px;
   }
 }

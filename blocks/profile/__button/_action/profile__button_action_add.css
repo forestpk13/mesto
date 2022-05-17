@@ -10,17 +10,7 @@
 @media screen and (max-width: 810px) {
   .profile__button_action_add  {
     width: 282px;
-  }
-}
-
-@media screen and (max-width: 475px) {
-  .profile__button_action_add {
     background-size: 16px 16px;
   }
 }
 
-@media screen and (max-width: 320px) {
-  .profile__button_action_add {
-    width: 100%;
-  }
-}
