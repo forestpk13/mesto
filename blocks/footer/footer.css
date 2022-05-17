@@ -9,6 +9,7 @@
 @media screen and (max-width: 1024px) {
   .footer {
     padding-top: calc((100vw - 810px)/(1024 - 810) * (67 - 48) + 48px);
+    padding-bottom: calc((100vw - 810px)/(1024 - 810) * (60 - 36) + 36px);
   }
 }
 
@@ -16,5 +17,6 @@
 @media screen and (max-width: 810px) {
   .footer {
     padding-top: 48px;
+    padding-bottom: 36px;
   }
 }
