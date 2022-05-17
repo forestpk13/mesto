@@ -25,3 +25,18 @@
 @import url(../blocks/profile/__button/profile__button.css);
 @import url(../blocks/profile/__button/_action/profile__button_action_edit.css);
 @import url(../blocks/profile/__button/_action/profile__button_action_add.css);
+
+/*Стили класса elements*/
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/__list/elements__list.css);
+
+/*Стили класса photo-card*/
+@import url(../blocks/photo-card/photo-card.css);
+@import url(../blocks/photo-card/__image/photo-card__image.css);
+@import url(../blocks/photo-card/__description/photo-card__description.css);
+@import url(../blocks/photo-card/__title/photo-card__title.css);
+@import url(../blocks/photo-card/__button-like/photo-card__button-like.css);
+
+/*Стили класса footer*/
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);

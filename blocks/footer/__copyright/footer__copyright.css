@@ -1,0 +1,20 @@
+.footer__copyright {
+  margin: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  color: #545454;
+}
+
+@media screen and (max-width: 1024px) {
+  .footer__copyright {
+    font-size: calc((100vw - 810px)/(1024 - 810) * (18 - 14) + 14px);
+  }
+}
+
+
+@media screen and (max-width: 810px) {
+  .footer__copyright {
+    font-size: 14px;
+  }
+}

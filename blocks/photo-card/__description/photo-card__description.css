@@ -1,0 +1,9 @@
+.photo-card__description {
+  padding-top: 25px;
+  padding-left: 21px;
+  width: 242px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
