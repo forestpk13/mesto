@@ -20,9 +20,10 @@
 @import url(../blocks/button/button.css);
 @import url(../blocks/button/_place/button_place_profile.css);
 @import url(../blocks/button/_place/button_place_photo-card.css);
-@import url(../blocks/button/_action/button_action_add.css);
-@import url(../blocks/button/_action/button_action_edit.css);
-@import url(../blocks/button/_action/button_action_like.css);
+@import url(../blocks/button/_type/button_type_add.css);
+@import url(../blocks/button/_type/button_type_edit.css);
+@import url(../blocks/button/_type/button_type_like.css);
+@import url(../blocks/button/_type/button_active_like.css);
 @import url(../blocks/button/_opacity/button_opacity_more-transparent.css);
 
 /*Стили класса profile*/
