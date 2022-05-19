@@ -1,6 +1,6 @@
-.profile__button_action_edit {
+.button_action_edit {
   border: 1px solid white;
-  background-image: url(../../../../images/button-edit.svg);
+  background-image: url(../../../images/button-edit.svg);
   background-size: 48%;
   position: relative;
   top: 4px;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 810px) {
-  .profile__button_action_edit {
+  .button_action_edit {
     grid-column: 3;
     width: 18px;
     height: 18px;

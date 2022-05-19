@@ -1,7 +1,8 @@
-.profile__button  {
+.button  {
   box-sizing: border-box;
-  background-color: #000000;
   background-position: center;
   background-repeat: no-repeat;
   padding: 0;
+  cursor: pointer;
+  transition: opacity 0.3s;
 }

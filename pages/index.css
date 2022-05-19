@@ -16,15 +16,21 @@
 /*Стили класса logo*/
 @import url(../blocks/logo/logo.css);
 
+/*Стили класса button*/
+@import url(../blocks/button/button.css);
+@import url(../blocks/button/_place/button_place_profile.css);
+@import url(../blocks/button/_place/button_place_photo-card.css);
+@import url(../blocks/button/_action/button_action_add.css);
+@import url(../blocks/button/_action/button_action_edit.css);
+@import url(../blocks/button/_action/button_action_like.css);
+@import url(../blocks/button/_opacity/button_opacity_more-transparent.css);
+
 /*Стили класса profile*/
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__description/profile__description.css);
-@import url(../blocks/profile/__button/profile__button.css);
-@import url(../blocks/profile/__button/_action/profile__button_action_edit.css);
-@import url(../blocks/profile/__button/_action/profile__button_action_add.css);
 
 /*Стили класса elements*/
 @import url(../blocks/elements/elements.css);
@@ -35,8 +41,9 @@
 @import url(../blocks/photo-card/__image/photo-card__image.css);
 @import url(../blocks/photo-card/__description/photo-card__description.css);
 @import url(../blocks/photo-card/__title/photo-card__title.css);
-@import url(../blocks/photo-card/__button-like/photo-card__button-like.css);
 
 /*Стили класса footer*/
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+
+
