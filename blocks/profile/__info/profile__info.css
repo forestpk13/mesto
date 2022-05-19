@@ -10,7 +10,7 @@
 @media screen and (max-width: 810px) {
   .profile__info {
     grid-template-columns: 17px repeat(2, min-content);
-    flex-basis: 0;
+    flex-basis: auto;
     gap: 9px 10px;
     margin-bottom: 32px;
     margin-left: 0;
