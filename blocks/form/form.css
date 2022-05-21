@@ -1,0 +1,5 @@
+.form {
+  margin: 0 auto;
+  max-width: 358px;
+  width: calc(100% - 44px);
+}

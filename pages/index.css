@@ -43,8 +43,74 @@
 @import url(../blocks/photo-card/__description/photo-card__description.css);
 @import url(../blocks/photo-card/__title/photo-card__title.css);
 
+/*Стили класса popup*/
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__container/popup__container.css);
+
+/*Стили класса form*/
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__title/form__title.css);
+@import url(../blocks/form/__fields/form__fields.css);
+@import url(../blocks/form/__item/form__item.css);
+
+
 /*Стили класса footer*/
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.button_place_popup {
+  color: white;
+  background: #000000;
+  border-radius: 2px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  width: 100%;
+  height: 50px;
+  border: none;
+}
+
+@media screen and (max-width: 425px) {
+  .button_place_popup {
+    height: 46px;
+    font-size: 14px;
+  }
+}
+
+
+.button_type_close {
+  background-image: url(../images/close-button.svg);
+  border: none;
+  background-color: transparent;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: -40px;
+  top: -40px;
+}
+
+@media screen and (max-width: 570px) {
+  .button_type_close {
+    right: 0px;
+    top: -36px;
+    width: 20px;
+    height: 20px;
+  }
+}
