@@ -1,8 +1,13 @@
 .button  {
-  box-sizing: border-box;
+  border: 0;
+  background-color: transparent;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background-position: center;
   background-repeat: no-repeat;
   padding: 0;
   cursor: pointer;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }

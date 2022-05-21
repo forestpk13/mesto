@@ -4,14 +4,17 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
+  -ms-grid-column-span: 2;
   grid-column: span 2;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
 @media screen and (max-width: 810px) {
   .profile__description {
+    -ms-grid-column-span: 3;
     grid-column: span 3;
     max-width: 282px;
     text-align: center;

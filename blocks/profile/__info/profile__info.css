@@ -1,16 +1,27 @@
 .profile__info {
+  display: -ms-grid;
   display: grid;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 10px 18px;
+  -ms-grid-columns: -webkit-min-content 18px -webkit-min-content;
+  -ms-grid-columns: min-content 18px min-content;
+  grid-template-columns: repeat(2, -webkit-min-content);
   grid-template-columns: repeat(2, min-content);
   margin-left: 30px;
-  flex-basis: 580px;
+  -ms-flex-preferred-size: 580px;
+      flex-basis: 580px;
 }
 
 @media screen and (max-width: 810px) {
   .profile__info {
+    -ms-grid-columns: 17px 10px -webkit-min-content 10px -webkit-min-content;
+    -ms-grid-columns: 17px 10px min-content 10px min-content;
+    grid-template-columns: 17px repeat(2, -webkit-min-content);
     grid-template-columns: 17px repeat(2, min-content);
-    flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+        flex-basis: auto;
     gap: 9px 10px;
     margin-bottom: 32px;
     margin-left: 0;

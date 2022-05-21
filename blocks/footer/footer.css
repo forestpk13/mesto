@@ -2,12 +2,14 @@
   max-width: 880px;
   width: calc(100% - 54px);
   margin: 0 auto;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 67px 0 60px;
 }
 
 @media screen and (max-width: 1024px) {
   .footer {
+    width: calc(100% - 38px);
     padding-top: calc((100vw - 810px)/(1024 - 810) * (67 - 48) + 48px);
     padding-bottom: calc((100vw - 810px)/(1024 - 810) * (60 - 36) + 36px);
   }

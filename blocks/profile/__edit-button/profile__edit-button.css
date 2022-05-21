@@ -1,4 +1,4 @@
-.button_type_edit {
+.profile__edit-button {
   border: 1px solid white;
   background-image: url(../../../images/button-edit.svg);
   background-size: 48%;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 810px) {
-  .button_type_edit {
+  .profile__edit-button {
     grid-column: 3;
     width: 18px;
     height: 18px;
