@@ -7,7 +7,7 @@
   -ms-grid-column-span: 2;
   grid-column: span 2;
   -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }

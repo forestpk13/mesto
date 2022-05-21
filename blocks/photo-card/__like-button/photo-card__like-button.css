@@ -1,5 +1,20 @@
 .photo-card__like-button {
+  border: 0;
+  background-color: transparent;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0;
+  cursor: pointer;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
   background-image: url(../../../images/like-button.svg);
   width: 22px;
   height: 19px;
+}
+
+.photo-card__like-button:hover {
+  opacity: 0.5;
 }
