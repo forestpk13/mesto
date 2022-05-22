@@ -7,6 +7,7 @@ let formElement = popup.querySelector('#profile');
 let inputName = formElement.querySelector ('#profile__name');
 let inputDescription = formElement.querySelector ('#profile__description');
 
+/* Функция, открывающая popup и берущая значения для инпутов из профиля*/
 function openPopup () {
   popup.classList.add('popup_opened');
   inputName.value = profileName.textContent;
@@ -14,11 +15,12 @@ function openPopup () {
 
 }
 
+/* Функция, закрывающая popup*/
 function closePopup () {
   popup.classList.remove('popup_opened');
 }
 
-
+/* Функция, закрывающая popup и подменяющая значения в профиле введенными в инпутах*/
 function formSubmitHandler (evt) {
   evt.preventDefault();
 

@@ -18,10 +18,10 @@
         <img class="profile__avatar" src="images/profile-photo.jpg" alt="Аватар пользователя">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" aria-label="Редактировать"></button>
+          <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
           <p class="profile__description">Исследователь океана</p>
         </div>
-        <button class="profile__add-button" aria-label="Добавить"></button>
+        <button type="button" class="profile__add-button" aria-label="Добавить"></button>
       </section>
 
       <section class="elements">
@@ -30,60 +30,60 @@
             <img src="images/photo-karachaevsk.jpg" alt="Карачаевск" class="photo-card__image">
             <div class="photo-card__description">
               <h2 class="photo-card__title">Карачаевск</h2>
-              <button class="photo-card__like-button" aria-label="Нравится"></button>
+              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
             </div>
           </li>
           <li class="photo-card">
             <img src="images/photo-elbrus.png" alt="Гора Эльбрус" class="photo-card__image">
             <div class="photo-card__description">
               <h2 class="photo-card__title">Гора Эльбрус</h2>
-              <button class="photo-card__like-button" aria-label="Нравится"></button>
+              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
             </div>
           </li>
           <li class="photo-card">
             <img src="images/photo-dombai.png" alt="Домбай" class="photo-card__image">
             <div class="photo-card__description">
               <h2 class="photo-card__title">Домбай</h2>
-              <button class="photo-card__like-button" aria-label="Нравится"></button>
+              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
             </div>
           </li>
           <li class="photo-card">
             <img src="images/photo-elbrus.png" alt="Гора Эльбрус" class="photo-card__image">
             <div class="photo-card__description">
               <h2 class="photo-card__title">Гора Эльбрус</h2>
-              <button class="photo-card__like-button" aria-label="Нравится"></button>
+              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
             </div>
           </li>
           <li class="photo-card">
             <img src="images/photo-dombai.png" alt="Домбай" class="photo-card__image">
             <div class="photo-card__description">
               <h2 class="photo-card__title">Домбай</h2>
-              <button class="photo-card__like-button" aria-label="Нравится"></button>
+              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
             </div>
           </li>
           <li class="photo-card">
             <img src="images/photo-karachaevsk.jpg" alt="Карачаево-Черкесия" class="photo-card__image">
             <div class="photo-card__description">
               <h2 class="photo-card__title">Карачаево-Черкесия</h2>
-              <button class="photo-card__like-button" aria-label="Нравится"></button>
+              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
             </div>
           </li>
         </ul>
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">© 2022 Mesto Russia</p>
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
     <div class="popup">
       <div class="popup__container">
-        <button class="popup__close-button" aria-label="Закрыть"></button>
+        <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
         <form class="form" id="profile" name="profile">
-          <h3 class="form__title">Редактировать профиль</h3>
+          <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__fields">
             <input type="text" class="form__item" id="profile__name" name="profile__name" placeholder="Введите ваше имя" required>
             <input type="text" class="form__item" id="profile__description" name="profile__description" placeholder="Укажите род деятельности" required>
           </fieldset>
-          <button type="submit" class="button form__submit-button button_opacity_eighty" name="profile__save" value="Сохранить">Сохранить</button>
+          <button type="submit" class="button form__submit-button" name="profile__save" value="Сохранить">Сохранить</button>
         </form>
       </div>
     </div>

@@ -1,6 +1,7 @@
 .photo-card__description {
   padding-top: 25px;
   padding-left: 21px;
+  padding-bottom: 25px;
   width: 242px;
   display: -webkit-box;
   display: -ms-flexbox;
