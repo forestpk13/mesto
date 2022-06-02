@@ -26,48 +26,7 @@
 
       <section class="elements">
         <ul class="elements__list">
-          <li class="photo-card">
-            <img src="images/photo-karachaevsk.jpg" alt="Карачаевск" class="photo-card__image">
-            <div class="photo-card__description">
-              <h2 class="photo-card__title">Карачаевск</h2>
-              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="photo-card">
-            <img src="images/photo-elbrus.png" alt="Гора Эльбрус" class="photo-card__image">
-            <div class="photo-card__description">
-              <h2 class="photo-card__title">Гора Эльбрус</h2>
-              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="photo-card">
-            <img src="images/photo-dombai.png" alt="Домбай" class="photo-card__image">
-            <div class="photo-card__description">
-              <h2 class="photo-card__title">Домбай</h2>
-              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="photo-card">
-            <img src="images/photo-elbrus.png" alt="Гора Эльбрус" class="photo-card__image">
-            <div class="photo-card__description">
-              <h2 class="photo-card__title">Гора Эльбрус</h2>
-              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="photo-card">
-            <img src="images/photo-dombai.png" alt="Домбай" class="photo-card__image">
-            <div class="photo-card__description">
-              <h2 class="photo-card__title">Домбай</h2>
-              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
-            </div>
-          </li>
-          <li class="photo-card">
-            <img src="images/photo-karachaevsk.jpg" alt="Карачаево-Черкесия" class="photo-card__image">
-            <div class="photo-card__description">
-              <h2 class="photo-card__title">Карачаево-Черкесия</h2>
-              <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
-            </div>
-          </li>
+
         </ul>
       </section>
     </main>
@@ -88,6 +47,17 @@
       </div>
     </div>
   </div>
+
+  <template class="photo-card-template">
+    <li class="photo-card">
+      <img class="photo-card__image">
+      <div class="photo-card__description">
+        <h2 class="photo-card__title">Карачаевск</h2>
+        <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
+      </div>
+    </li>
+  </template>
+
   <script src="scripts/index.js"></script>
 </body>
 </html>
