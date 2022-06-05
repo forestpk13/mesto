@@ -4,4 +4,5 @@
   overflow: hidden;
   max-width: 282px;
   max-height: 361px;
+  position: relative;
 }

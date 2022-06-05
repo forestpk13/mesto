@@ -34,7 +34,7 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_content_edit-profile">
       <div class="popup__container">
         <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
         <form class="form" id="profile" name="profile">
@@ -47,8 +47,30 @@
         </form>
       </div>
     </div>
+
+    <div class="popup popup_content_new-photo">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+        <form class="form" id="new-photo" name="new-photo">
+          <h2 class="form__title">Новое место</h2>
+          <fieldset class="form__fields">
+            <input type="text" class="form__item" id="new-photo__name" name="new-photo__name" placeholder="Название" required>
+            <input type="text" class="form__item" id="new-photo__link" name="new-photo__link" placeholder="Ссылка на картинку" required>
+          </fieldset>
+          <button type="submit" class="button form__submit-button" name="new-photo__add" value="Создать">Создать</button>
+        </form>
+      </div>
+    </div>
   </div>
 
+  <div class="popup popup_content_photo-big">
+    <div class="popup__image-container">
+      <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+      <img class="popup__image">
+      <h3 class="popup__image-caption"></h3>
+    </div>
+  </div>
+</div>
   <template class="photo-card-template">
     <li class="photo-card">
       <img class="photo-card__image">
@@ -56,8 +78,10 @@
         <h2 class="photo-card__title">Карачаевск</h2>
         <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
       </div>
+      <button type="button" class="photo-card__delete-button" aria-label="Удалить"></button>
     </li>
   </template>
+  <script src="scripts/cards.js"></script>
   <script src="scripts/index.js"></script>
 </body>
 </html>
