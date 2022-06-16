@@ -2,11 +2,16 @@ const openPopup = popup => {popup.classList.add('popup_opened');}
 const closePopup = popup => {popup.classList.remove('popup_opened');}
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 
-/*Для каждой кнопки закрытия popup подключаем фукнцию закрытия popup*/
-popupCloseButtons.forEach(button => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
+const popups = document.querySelectorAll('.popup');
+
+/*Функция для закрытия popup по клику на оверлей или кнопку "Закрыть"*/
+const handleClickonPopup = evt => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+    closePopup(evt.target.closest('.popup'));
+  }
+}
+
+popups.forEach(popup => popup.addEventListener('click', handleClickonPopup));
 
 /*Переменные для профиля и его формы заполнения*/
 const profileEditButton = document.querySelector('.profile__edit-button');
