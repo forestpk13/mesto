@@ -1,8 +1,21 @@
-const openPopup = popup => {popup.classList.add('popup_opened');}
-const closePopup = popup => {popup.classList.remove('popup_opened');}
-const popupCloseButtons = document.querySelectorAll('.popup__close-button');
-
 const popups = document.querySelectorAll('.popup');
+
+const closePopupWithEsc = evt => {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+const openPopup = popup => {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupWithEsc);
+}
+const closePopup = popup => {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupWithEsc);
+}
+
+
 
 /*Функция для закрытия popup по клику на оверлей или кнопку "Закрыть"*/
 const handleClickonPopup = evt => {
@@ -72,7 +85,7 @@ const photoPopup = document.querySelector('.popup_content_photo-big');
 const photoPopupImage = photoPopup.querySelector('.popup__image');
 const photoPopupCaption = photoPopup.querySelector('.popup__image-caption');
 
-/*Открываем popup с фотографией и заполнаем его*/
+/*Открываем popup с фотографией и заполняем его*/
 const handlePhotoCardCLick = (photoCardContent) => {
   openPopup(photoPopup);
   photoPopupImage.src = photoCardContent.link;
