@@ -1,9 +1,11 @@
+/*Функция для проверки наличия невалидного инпута в форме*/
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
 });
 };
 
+/*Функция для переключения состояния кнопки сабмита формы в активное и неактивное состояния*/
 const toggleButtonState = (inputList, formSubmitButton) => {
   if (hasInvalidInput(inputList)) {
     formSubmitButton.setAttribute('disabled', true);
@@ -12,7 +14,7 @@ const toggleButtonState = (inputList, formSubmitButton) => {
 }
 };
 
-
+/*Функция для показа сообщения об ошибке*/
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = errorMessage;
@@ -20,6 +22,7 @@ const showInputError = (formElement, inputElement, errorMessage, settings) => {
   errorElement.classList.add(`${settings.errorClass}`);
 }
 
+/*Функция для скрытия сообщения об ошибке*/
 const hideInputError = (formElement, inputElement, settings) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(`${settings.inputErrorClass}`);
@@ -27,7 +30,7 @@ const hideInputError = (formElement, inputElement, settings) => {
   errorElement.textContent = '';
 }
 
-
+/*Функция для проверки валидности инпута и вызова функций показа/скрытия сообщения об ошибке*/
 const isValid = (formElement, inputElement, settings) => {
   if(!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, settings);
@@ -36,6 +39,7 @@ const isValid = (formElement, inputElement, settings) => {
   }
 }
 
+/*Функция для создания обработчиков события на каждый инпут формы*/
 const setEventListeners = (formElement, settings) => {
   const inputList = Array.from(formElement.querySelectorAll(`${settings.inputSelector}`));
   const formSubmitButton = formElement.querySelector(`${settings.submitButtonSelector}`);
@@ -48,6 +52,7 @@ const setEventListeners = (formElement, settings) => {
   });
 }
 
+/*Функция для включения валидации путем навешивания на каждую форму на странице обработчика события*/
 const enableValidation = settings => {
   const formList = Array.from(document.querySelectorAll(`${settings.formSelector}`));
   formList.forEach(formElement => {
@@ -55,6 +60,7 @@ const enableValidation = settings => {
   });
 }
 
+/*Включаем валидацию и передаем объект с настройками*/
 enableValidation({
   formSelector: '.form',
   inputSelector: '.form__item',
