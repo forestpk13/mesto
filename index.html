@@ -37,11 +37,17 @@
     <div class="popup popup_content_edit-profile">
       <div class="popup__container">
         <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
-        <form class="form" id="profile" name="profile">
+        <form class="form" id="profile" name="profile" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__fields">
-            <input type="text" class="form__item" id="profile__name" name="profile__name" placeholder="Введите ваше имя" required>
-            <input type="text" class="form__item" id="profile__description" name="profile__description" placeholder="Укажите род деятельности" required>
+            <label class="form__field">
+              <input type="text" class="form__item" id="profile__name" name="profile__name" placeholder="Введите ваше имя" minlength="2" maxlength="40" required>
+              <span class="profile__name-error form__error"></span>
+            </label>
+            <label class="form__field">
+              <input type="text" class="form__item" id="profile__description" name="profile__description" placeholder="Укажите род деятельности" minlength="2" maxlength="200" required>
+              <span class="profile__description-error form__error"></span>
+            </label>
           </fieldset>
           <button type="submit" class="button form__submit-button" name="profile__save" value="Сохранить">Сохранить</button>
         </form>
@@ -51,11 +57,17 @@
     <div class="popup popup_content_new-photo">
       <div class="popup__container">
         <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
-        <form class="form" id="photo" name="photo">
+        <form class="form" id="photo" name="photo" novalidate>
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__fields">
-            <input type="text" class="form__item" id="photo__name" name="photo__name" placeholder="Название" required>
-            <input type="text" class="form__item" id="photo__link" name="photo__link" placeholder="Ссылка на картинку" required>
+            <label class="form__field">
+              <input type="text" class="form__item" id="photo__name" name="photo__name" placeholder="Название" minlength="2" maxlength="30" required>
+              <span class="photo__name-error form__error"></span>
+            </label>
+            <label class="form__field">
+              <input type="url" class="form__item" id="photo__link" name="photo__link" placeholder="Ссылка на картинку" required>
+              <span class="photo__link-error form__error"></span>
+            </label>
           </fieldset>
           <button type="submit" class="button form__submit-button" name="new-photo__add" value="Создать">Создать</button>
         </form>
@@ -81,6 +93,7 @@
       <button type="button" class="photo-card__delete-button" aria-label="Удалить"></button>
     </li>
   </template>
+  <script src="scripts/validate.js"></script>
   <script src="scripts/cards.js"></script>
   <script src="scripts/index.js"></script>
 </body>
