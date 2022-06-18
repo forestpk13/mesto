@@ -1,0 +1,14 @@
+.form__field {
+  display: block;
+  min-height: 65px;
+}
+
+.form__field:last-of-type {
+  margin-bottom: 18px;
+}
+
+@media screen and (max-width: 425px) {
+  .form__field:last-of-type {
+    margin-bottom: 13px;
+  }
+}

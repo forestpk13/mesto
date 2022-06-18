@@ -1,21 +1,40 @@
-const openPopup = popup => {popup.classList.add('popup_opened');}
-const closePopup = popup => {popup.classList.remove('popup_opened');}
-const popupCloseButtons = document.querySelectorAll('.popup__close-button');
+const popups = document.querySelectorAll('.popup');
 
-/*Для каждой кнопки закрытия popup подключаем фукнцию закрытия popup*/
-popupCloseButtons.forEach(button => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
+/*Функция для закрытия popup по нажатию клавиши Esc*/
+const closePopupWithEsc = evt => {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+const openPopup = popup => {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupWithEsc);
+}
+const closePopup = popup => {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupWithEsc);
+}
+
+
+
+/*Функция для закрытия popup по клику на оверлей или кнопку "Закрыть"*/
+const handleClickonPopup = evt => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+    closePopup(evt.target.closest('.popup'));
+  }
+}
+
+popups.forEach(popup => popup.addEventListener('click', handleClickonPopup));
 
 /*Переменные для профиля и его формы заполнения*/
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileEditPopup = document.querySelector('.popup_content_edit-profile');
 const profileName = document.querySelector ('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
-const profileFormElement = document.querySelector('#profile');
-const inputName = profileFormElement.querySelector ('#profile__name');
-const inputDescription = profileFormElement.querySelector ('#profile__description');
+const profileFormElement = document.forms.profile;
+const inputName = profileFormElement.elements.profile__name;
+const inputDescription = profileFormElement.elements.profile__description;
 
 /*Получаем имя и род деятельности пользователя из профиля*/
 const getProfileData = () => {
@@ -46,9 +65,9 @@ profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 const photoAddPopup = document.querySelector('.popup_content_new-photo');
 const photoAddButton = document.querySelector('.profile__add-button');
 const photoCardsList = document.querySelector('.elements__list');
-const addPhotoFormElement = document.querySelector('#new-photo');
-const inputPhotoName = addPhotoFormElement.querySelector ('#new-photo__name');
-const inputPhotoLink = addPhotoFormElement.querySelector ('#new-photo__link');
+const photoFormElement = document.forms.photo;
+const inputPhotoName = photoFormElement.elements.photo__name;
+const inputPhotoLink = photoFormElement.elements.photo__link;
 const photoCardsTemplate = document.querySelector('.photo-card-template').content;
 
 /*Включаем отображение поставленного лайка на фотокарточку*/
@@ -67,7 +86,7 @@ const photoPopup = document.querySelector('.popup_content_photo-big');
 const photoPopupImage = photoPopup.querySelector('.popup__image');
 const photoPopupCaption = photoPopup.querySelector('.popup__image-caption');
 
-/*Открываем popup с фотографией и заполнаем его*/
+/*Открываем popup с фотографией и заполняем его*/
 const handlePhotoCardCLick = (photoCardContent) => {
   openPopup(photoPopup);
   photoPopupImage.src = photoCardContent.link;
@@ -110,7 +129,7 @@ const NewPhotoFormSubmit = evt => {
   addCard(card);
 
   closePopup(photoAddPopup);
-  addPhotoFormElement.reset();
+  photoFormElement.reset();
 }
 
-addPhotoFormElement.addEventListener('submit', NewPhotoFormSubmit);
+photoFormElement.addEventListener('submit', NewPhotoFormSubmit);
