@@ -16,7 +16,7 @@ const toggleButtonState = (inputList, formSubmitButton) => {
 
 /*Функция для показа сообщения об ошибке*/
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`.form__error_field_${inputElement.id}`);
   errorElement.textContent = errorMessage;
   inputElement.classList.add(`${settings.inputErrorClass}`);
   errorElement.classList.add(`${settings.errorClass}`);
@@ -24,7 +24,7 @@ const showInputError = (formElement, inputElement, errorMessage, settings) => {
 
 /*Функция для скрытия сообщения об ошибке*/
 const hideInputError = (formElement, inputElement, settings) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`.form__error_field_${inputElement.id}`);
   inputElement.classList.remove(`${settings.inputErrorClass}`);
   errorElement.classList.remove(`${settings.errorClass}`);
   errorElement.textContent = '';

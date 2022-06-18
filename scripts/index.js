@@ -32,9 +32,9 @@ const profileEditButton = document.querySelector('.profile__edit-button');
 const profileEditPopup = document.querySelector('.popup_content_edit-profile');
 const profileName = document.querySelector ('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
-const profileFormElement = document.forms.profile;
-const inputName = profileFormElement.elements.profile__name;
-const inputDescription = profileFormElement.elements.profile__description;
+const profileFormElement = document.querySelector('#profile');
+const inputName = profileFormElement.querySelector ('#profile-name');
+const inputDescription = profileFormElement.querySelector ('#profile-description');
 
 /*Получаем имя и род деятельности пользователя из профиля*/
 const getProfileData = () => {
@@ -65,9 +65,9 @@ profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 const photoAddPopup = document.querySelector('.popup_content_new-photo');
 const photoAddButton = document.querySelector('.profile__add-button');
 const photoCardsList = document.querySelector('.elements__list');
-const photoFormElement = document.forms.photo;
-const inputPhotoName = photoFormElement.elements.photo__name;
-const inputPhotoLink = photoFormElement.elements.photo__link;
+const photoFormElement = document.querySelector('#photo');
+const inputPhotoName = photoFormElement.querySelector ('#photo-name');
+const inputPhotoLink = photoFormElement.querySelector ('#new-photo-link');
 const photoCardsTemplate = document.querySelector('.photo-card-template').content;
 
 /*Включаем отображение поставленного лайка на фотокарточку*/
