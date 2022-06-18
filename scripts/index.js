@@ -16,7 +16,9 @@ const closePopup = popup => {
   document.removeEventListener('keydown', closePopupWithEsc);
 }
 
-
+const disableSubmitButton = buttonElement => {
+  buttonElement.setAttribute('disabled', true);
+}
 
 /*Функция для закрытия popup по клику на оверлей или кнопку "Закрыть"*/
 const handleClickonPopup = evt => {
@@ -67,7 +69,7 @@ const photoAddButton = document.querySelector('.profile__add-button');
 const photoCardsList = document.querySelector('.elements__list');
 const photoFormElement = document.querySelector('#photo');
 const inputPhotoName = photoFormElement.querySelector ('#photo-name');
-const inputPhotoLink = photoFormElement.querySelector ('#new-photo-link');
+const inputPhotoLink = photoFormElement.querySelector ('#photo-link');
 const photoCardsTemplate = document.querySelector('.photo-card-template').content;
 
 /*Включаем отображение поставленного лайка на фотокарточку*/
@@ -130,6 +132,8 @@ const NewPhotoFormSubmit = evt => {
 
   closePopup(photoAddPopup);
   photoFormElement.reset();
+  const submitButton = evt.target.querySelector('.form__submit-button');
+  disableSubmitButton(submitButton);
 }
 
 photoFormElement.addEventListener('submit', NewPhotoFormSubmit);
