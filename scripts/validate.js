@@ -31,7 +31,7 @@ const hideInputError = (formElement, inputElement, settings) => {
 }
 
 /*Функция для проверки валидности инпута и вызова функций показа/скрытия сообщения об ошибке*/
-const isValid = (formElement, inputElement, settings) => {
+const checkInputValidity = (formElement, inputElement, settings) => {
   if(!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, settings);
   } else {
@@ -46,7 +46,7 @@ const setEventListeners = (formElement, settings) => {
   toggleButtonState(inputList, formSubmitButton);
   inputList.forEach(inputElement => {
     inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement, settings);
+      checkInputValidity(formElement, inputElement, settings);
       toggleButtonState(inputList, formSubmitButton);
   });
   });

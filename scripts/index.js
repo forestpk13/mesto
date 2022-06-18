@@ -1,5 +1,6 @@
 const popups = document.querySelectorAll('.popup');
 
+/*Функция для закрытия popup по нажатию клавиши Esc*/
 const closePopupWithEsc = evt => {
   if (evt.key === 'Escape') {
     closePopup(document.querySelector('.popup_opened'));
