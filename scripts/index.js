@@ -68,7 +68,7 @@ const photoCardsList = document.querySelector('.elements__list');
 const photoFormElement = document.forms.photo;
 const inputPhotoName = photoFormElement.elements.photo__name;
 const inputPhotoLink = photoFormElement.elements.photo__link;
-const photoCardsTemplate = document.querySelector('.photo-card-template').content;
+const photoCardsTemplate = document.querySelector('.photo-card-template').content; /*Перенес в класс*/
 
 /*Включаем отображение поставленного лайка на фотокарточку*/
 const likeCard = evt => evt.target.classList.toggle('photo-card__like-button_active');
@@ -97,13 +97,13 @@ const handlePhotoCardCLick = (photoCardContent) => {
 
 /*Формируем фотокарточку*/
 const createPhotoCard = (photoCardContent) => {
-  const photoCardElement = photoCardsTemplate.querySelector('.photo-card').cloneNode(true);
+  const photoCardElement = photoCardsTemplate.querySelector('.photo-card').cloneNode(true); /*Перенес в класс*/
   const likeButton = photoCardElement.querySelector('.photo-card__like-button');
   const deleteButton = photoCardElement.querySelector('.photo-card__delete-button');
   const photoCardImage = photoCardElement.querySelector('.photo-card__image');
-  photoCardElement.querySelector('.photo-card__title').textContent = photoCardContent.name;
-  photoCardImage.alt = photoCardContent.name;
-  photoCardImage.src = photoCardContent.link;
+  photoCardElement.querySelector('.photo-card__title').textContent = photoCardContent.name; /*Перенес в класс*/
+  photoCardImage.alt = photoCardContent.name; /*Перенес в класс*/
+  photoCardImage.src = photoCardContent.link; /*Перенес в класс*/
 
   likeButton.addEventListener('click', likeCard);
   deleteButton.addEventListener('click', deleleteCard);
@@ -119,6 +119,15 @@ const addCard = photoCardContent => {
 
 /*Загружаем фотокарточки из стартового массива в новый массив*/
 photoCardsList.append(...initialCards.map(photoCardContent => createPhotoCard(photoCardContent)));
+
+
+initialCards.forEach((item) => {
+  const card = new Card(item, '.photo-card-template');
+  const cardElement = card.generateCard();
+
+  // Добавляем в DOM
+  photoCardsList.append(cardElement);
+});
 
 /*В массив фотокарточек добавляем новую с данными из формы в массив карточек и закрываем popup*/
 const NewPhotoFormSubmit = evt => {
