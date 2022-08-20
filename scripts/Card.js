@@ -25,13 +25,6 @@ class Card {
     this._deleteButton.closest('.photo-card').remove();
   }
 
-  _handlePhotoCardCLick() {
-    openPopup(photoPopup);
-    photoPopupImage.src = this._link;
-    photoPopupImage.alt = this._name;
-    photoPopupCaption.textContent = this._name;
-  }
-
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
       this._likeCard();
@@ -39,10 +32,6 @@ class Card {
 
     this._deleteButton.addEventListener('click', () => {
       this._deleleteCard();
-    });
-
-    this._photoCardImage.addEventListener('click', () => {
-      this._handlePhotoCardCLick();
     });
   }
 
@@ -59,3 +48,5 @@ class Card {
     return this._element;
   }
 }
+
+export {Card};

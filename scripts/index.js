@@ -1,3 +1,5 @@
+import {Card} from './Card.js';
+
 const popups = document.querySelectorAll('.popup');
 
 /*Функция для закрытия popup по нажатию клавиши Esc*/
@@ -68,13 +70,6 @@ const photoCardsList = document.querySelector('.elements__list');
 const photoFormElement = document.forms.photo;
 const inputPhotoName = photoFormElement.elements.photo__name;
 const inputPhotoLink = photoFormElement.elements.photo__link;
-const photoCardsTemplate = document.querySelector('.photo-card-template').content; /*Перенес в класс*/
-
-/*Включаем отображение поставленного лайка на фотокарточку*/
-const likeCard = evt => evt.target.classList.toggle('photo-card__like-button_active');
-
-/*Удаляем фотокарточку*/
-const deleleteCard = evt => evt.target.closest('.photo-card').remove();
 
 /*Открываем popup с формой добавления фотокарточки*/
 photoAddButton.addEventListener('click', () => {
@@ -95,41 +90,20 @@ const handlePhotoCardCLick = (photoCardContent) => {
 
 }
 
-/*Формируем фотокарточку*/
-const createPhotoCard = (photoCardContent) => {
-  const photoCardElement = photoCardsTemplate.querySelector('.photo-card').cloneNode(true); /*Перенес в класс*/
-  const likeButton = photoCardElement.querySelector('.photo-card__like-button');
-  const deleteButton = photoCardElement.querySelector('.photo-card__delete-button');
-  const photoCardImage = photoCardElement.querySelector('.photo-card__image');
-  photoCardElement.querySelector('.photo-card__title').textContent = photoCardContent.name; /*Перенес в класс*/
-  photoCardImage.alt = photoCardContent.name; /*Перенес в класс*/
-  photoCardImage.src = photoCardContent.link; /*Перенес в класс*/
 
-  likeButton.addEventListener('click', likeCard);
-  deleteButton.addEventListener('click', deleleteCard);
-  photoCardImage.addEventListener('click', () => handlePhotoCardCLick (photoCardContent));
-  return photoCardElement;
-};
 
-/*Добавляем фотокарточку*/
-const addCard = photoCardContent => {
-  const newCard = createPhotoCard(photoCardContent);
+
+/*Загружаем фотокарточки из стартового массива в новый массив*/
+photoCardsList.append(...initialCards.map(item => new Card(item, '.photo-card-template').generateCard()));
+
+/*Функция, добавляющая фотокарточку в массив*/
+const addCard = (photoCardContent) => {
+  const newCard = new Card(photoCardContent, '.photo-card-template').generateCard();
+  newCard.addEventListener('click', () => handlePhotoCardCLick (photoCardContent));
   photoCardsList.prepend(newCard);
 };
 
-/*Загружаем фотокарточки из стартового массива в новый массив*/
-photoCardsList.append(...initialCards.map(photoCardContent => createPhotoCard(photoCardContent)));
-
-
-initialCards.forEach((item) => {
-  const card = new Card(item, '.photo-card-template');
-  const cardElement = card.generateCard();
-
-  // Добавляем в DOM
-  photoCardsList.append(cardElement);
-});
-
-/*В массив фотокарточек добавляем новую с данными из формы в массив карточек и закрываем popup*/
+/*Формируем карточку с данными из формы и вызываем функции добавления карточки в массив карточек и закрытия popup*/
 const NewPhotoFormSubmit = evt => {
   evt.preventDefault();
   const card = {};
@@ -142,3 +116,5 @@ const NewPhotoFormSubmit = evt => {
 }
 
 photoFormElement.addEventListener('submit', NewPhotoFormSubmit);
+
+export {openPopup, closePopupWithEsc, photoPopup, photoPopupImage, photoPopupCaption};
