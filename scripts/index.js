@@ -102,5 +102,3 @@ const NewPhotoFormSubmit = evt => {
 }
 
 photoFormElement.addEventListener('submit', NewPhotoFormSubmit);
-
-export {openPopup, closePopupWithEsc, photoPopup, photoPopupImage, photoPopupCaption};
