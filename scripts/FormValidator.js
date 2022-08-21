@@ -23,14 +23,14 @@ class FormValidator {
   };
 
   _showInputError(inputElement, errorMessage) {
-    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+    const errorElement = this._formElement.querySelector(`.form__error_field_${inputElement.id}`);
     errorElement.textContent = errorMessage;
     inputElement.classList.add(`${this._inputErrorClass}`);
     errorElement.classList.add(`${this._errorClass}`);
   }
 
   _hideInputError(inputElement) {
-    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+    const errorElement = this._formElement.querySelector(`.form__error_field_${inputElement.id}`);
     inputElement.classList.remove(`${this._inputErrorClass}`);
     errorElement.classList.remove(`${this._errorClass}`);
     errorElement.textContent = '';
