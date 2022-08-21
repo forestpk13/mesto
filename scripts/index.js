@@ -1,7 +1,35 @@
-const popups = document.querySelectorAll('.popup');
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 
-/*Функция для закрытия popup по нажатию клавиши Esc*/
-const closePopupWithEsc = evt => {
+
+/*Включаем валидацию*/
+const validationSettings = {
+  formSelector: '.form',
+  inputSelector: '.form__item',
+  submitButtonSelector: '.form__submit-button',
+  inputErrorClass: 'form__item_type_error',
+  errorClass: 'form__error_visible'
+};
+
+(function validateForms() {
+  const formList = Array.from(document.querySelectorAll(`${validationSettings.formSelector}`));
+  formList.forEach(formElement => {
+    new FormValidator(validationSettings, formElement).enableValidation();
+  });
+})();
+
+
+/*Все для popup*/
+const handleClickonPopup = evt => {/*Функция для закрытия popup по клику на оверлей или кнопку "Закрыть"*/
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+    closePopup(evt.target.closest('.popup'));
+  }
+}
+
+const popups = document.querySelectorAll('.popup');
+popups.forEach(popup => popup.addEventListener('click', handleClickonPopup));
+
+const closePopupWithEsc = evt => { /*Функция для закрытия popup по нажатию клавиши Esc*/
   if (evt.key === 'Escape') {
     closePopup(document.querySelector('.popup_opened'));
   }
@@ -16,42 +44,28 @@ const closePopup = popup => {
   document.removeEventListener('keydown', closePopupWithEsc);
 }
 
-const disableSubmitButton = buttonElement => {
-  buttonElement.setAttribute('disabled', true);
-}
 
-/*Функция для закрытия popup по клику на оверлей или кнопку "Закрыть"*/
-const handleClickonPopup = evt => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-    closePopup(evt.target.closest('.popup'));
-  }
-}
-
-popups.forEach(popup => popup.addEventListener('click', handleClickonPopup));
-
+/*Ниже - все для профиля*/
 /*Переменные для профиля и его формы заполнения*/
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileEditPopup = document.querySelector('.popup_content_edit-profile');
 const profileName = document.querySelector ('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
-const profileFormElement = document.querySelector('#profile');
-const inputName = profileFormElement.querySelector ('#profile-name');
-const inputDescription = profileFormElement.querySelector ('#profile-description');
+const profileFormElement = document.forms.profile;
+const inputName = profileFormElement.elements.profile__name;
+const inputDescription = profileFormElement.elements.profile__description;
 
-/*Получаем имя и род деятельности пользователя из профиля*/
-const getProfileData = () => {
+const getProfileData = () => { /*Получаем имя и род деятельности пользователя из профиля*/
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;
 }
 
-/*Открываем popup профиля и передаем данные об имени и роде деятельности в форму из профиля*/
-profileEditButton.addEventListener('click', () => {
+profileEditButton.addEventListener('click', () => { /*Открываем popup профиля и передаем данные об имени и роде деятельности в форму из профиля*/
   openPopup(profileEditPopup);
   getProfileData();
-});
+})
 
-/*Сохраняем в профиль данные из формы и закрываем popup профиля*/
-const handleProfileFormSubmit = evt => {
+const handleProfileFormSubmit = evt => { /*Сохраняем в профиль данные из формы и закрываем popup профиля*/
   evt.preventDefault();
 
   profileName.textContent = inputName.value;
@@ -63,67 +77,54 @@ const handleProfileFormSubmit = evt => {
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 
 
+/*Ниже - все для фотокарточек*/
 /*Переменные для фотокарточек и формы их добавления*/
 const photoAddPopup = document.querySelector('.popup_content_new-photo');
 const photoAddButton = document.querySelector('.profile__add-button');
 const photoCardsList = document.querySelector('.elements__list');
-const photoFormElement = document.querySelector('#photo');
-const inputPhotoName = photoFormElement.querySelector ('#photo-name');
-const inputPhotoLink = photoFormElement.querySelector ('#photo-link');
-const photoCardsTemplate = document.querySelector('.photo-card-template').content;
+const photoFormElement = document.forms.photo;
+const inputPhotoName = photoFormElement.elements.photo__name;
+const inputPhotoLink = photoFormElement.elements.photo__link;
 
-/*Включаем отображение поставленного лайка на фотокарточку*/
-const likeCard = evt => evt.target.classList.toggle('photo-card__like-button_active');
-
-/*Удаляем фотокарточку*/
-const deleleteCard = evt => evt.target.closest('.photo-card').remove();
-
-/*Открываем popup с формой добавления фотокарточки*/
-photoAddButton.addEventListener('click', () => {
+photoAddButton.addEventListener('click', () => { /*Открываем popup с формой добавления фотокарточки*/
   openPopup(photoAddPopup);
 });
 
-/*Переменные для popup с фотографией*/
-const photoPopup = document.querySelector('.popup_content_photo-big');
-const photoPopupImage = photoPopup.querySelector('.popup__image');
-const photoPopupCaption = photoPopup.querySelector('.popup__image-caption');
-
-/*Открываем popup с фотографией и заполняем его*/
-const handlePhotoCardCLick = (photoCardContent) => {
-  openPopup(photoPopup);
-  photoPopupImage.src = photoCardContent.link;
-  photoPopupImage.alt = photoCardContent.name;
-  photoPopupCaption.textContent = photoCardContent.name;
-
-}
-
-/*Формируем фотокарточку*/
-const createPhotoCard = (photoCardContent) => {
-  const photoCardElement = photoCardsTemplate.querySelector('.photo-card').cloneNode(true);
-  const likeButton = photoCardElement.querySelector('.photo-card__like-button');
-  const deleteButton = photoCardElement.querySelector('.photo-card__delete-button');
-  const photoCardImage = photoCardElement.querySelector('.photo-card__image');
-  photoCardElement.querySelector('.photo-card__title').textContent = photoCardContent.name;
-  photoCardImage.alt = photoCardContent.name;
-  photoCardImage.src = photoCardContent.link;
-
-  likeButton.addEventListener('click', likeCard);
-  deleteButton.addEventListener('click', deleleteCard);
-  photoCardImage.addEventListener('click', () => handlePhotoCardCLick (photoCardContent));
-  return photoCardElement;
+const addCard = photoCardContent => { /*Функция добавления фотокарточки*/
+  photoCardsList.prepend(new Card(photoCardContent, '.photo-card-template').generateCard());
 };
 
-/*Добавляем фотокарточку*/
-const addCard = photoCardContent => {
-  const newCard = createPhotoCard(photoCardContent);
-  photoCardsList.prepend(newCard);
-};
 
-/*Загружаем фотокарточки из стартового массива в новый массив*/
-photoCardsList.append(...initialCards.map(photoCardContent => createPhotoCard(photoCardContent)));
+const initialCards = [ /*Массив исходных фотокарточек */
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
-/*В массив фотокарточек добавляем новую с данными из формы в массив карточек и закрываем popup*/
-const NewPhotoFormSubmit = evt => {
+initialCards.reverse().forEach(item => addCard(item)); /*Загружаем фотокарточки из стартового массива в новый массив*/
+
+const NewPhotoFormSubmit = evt => { /*В массив фотокарточек добавляем новую с данными из формы в массив карточек и закрываем popup*/
   evt.preventDefault();
   const card = {};
   card.name = inputPhotoName.value;
@@ -132,8 +133,7 @@ const NewPhotoFormSubmit = evt => {
 
   closePopup(photoAddPopup);
   photoFormElement.reset();
-  const submitButton = evt.target.querySelector('.form__submit-button');
-  disableSubmitButton(submitButton);
 }
 
 photoFormElement.addEventListener('submit', NewPhotoFormSubmit);
+

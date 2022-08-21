@@ -41,12 +41,12 @@
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__fields">
             <label class="form__field">
-              <input type="text" class="form__item" id="profile-name" name="profile-name" placeholder="Введите ваше имя" minlength="2" maxlength="40" required>
-              <span class="form__error_field_profile-name form__error"></span>
+              <input type="text" class="form__item" id="profile__name" name="profile__name" placeholder="Введите ваше имя" minlength="2" maxlength="40" required>
+              <span class="profile__name-error form__error"></span>
             </label>
             <label class="form__field">
-              <input type="text" class="form__item" id="profile-description" name="profile-description" placeholder="Укажите род деятельности" minlength="2" maxlength="200" required>
-              <span class="form__error_field_profile-description form__error"></span>
+              <input type="text" class="form__item" id="profile__description" name="profile__description" placeholder="Укажите род деятельности" minlength="2" maxlength="200" required>
+              <span class="profile__description-error form__error"></span>
             </label>
           </fieldset>
           <button type="submit" class="button form__submit-button" name="profile__save" value="Сохранить">Сохранить</button>
@@ -61,12 +61,12 @@
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__fields">
             <label class="form__field">
-              <input type="text" class="form__item" id="photo-name" name="photo-name" placeholder="Название" minlength="2" maxlength="30" required>
-              <span class="form__error_field_photo-name form__error"></span>
+              <input type="text" class="form__item" id="photo__name" name="photo__name" placeholder="Название" minlength="2" maxlength="30" required>
+              <span class="photo__name-error form__error"></span>
             </label>
             <label class="form__field">
-              <input type="url" class="form__item" id="photo-link" name="photo-link" placeholder="Ссылка на картинку" required>
-              <span class="form__error_field_photo-link form__error"></span>
+              <input type="url" class="form__item" id="photo__link" name="photo__link" placeholder="Ссылка на картинку" required>
+              <span class="photo__link-error form__error"></span>
             </label>
           </fieldset>
           <button type="submit" class="button form__submit-button" name="new-photo__add" value="Создать">Создать</button>
@@ -93,8 +93,8 @@
       <button type="button" class="photo-card__delete-button" aria-label="Удалить"></button>
     </li>
   </template>
-  <script src="scripts/validate.js"></script>
-  <script src="scripts/cards.js"></script>
-  <script src="scripts/index.js"></script>
+  <script type="module" src="scripts/Card.js"></script>
+  <script type="module" src="scripts/FormValidator.js"></script>
+  <script type="module" src="scripts/index.js"></script>
 </body>
 </html>
