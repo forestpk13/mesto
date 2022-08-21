@@ -46,6 +46,10 @@ class Card {
     this._deleteButton.addEventListener('click', () => {
       this._deleleteCard();
     });
+
+    this._photoCardImage.addEventListener('click', () => {
+      this._handlePhotoCardCLick();
+    });
   }
 
   generateCard() {
