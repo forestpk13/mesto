@@ -25,6 +25,19 @@ class Card {
     this._deleteButton.closest('.photo-card').remove();
   }
 
+  _handlePhotoCardCLick() {
+    const photoPopup = document.querySelector('.popup_content_photo-big');
+    photoPopup.classList.add('popup_opened');
+    photoPopup.querySelector('.popup__image').src = this._link;
+    photoPopup.querySelector('.popup__image').alt = this._name;
+    photoPopup.querySelector('.popup__image-caption').textContent = this._name;
+    document.addEventListener('keydown', evt => {
+      if (evt.key === 'Escape') {
+        photoPopup.classList.remove('popup_opened');
+      }
+    });
+  }
+
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
       this._likeCard();

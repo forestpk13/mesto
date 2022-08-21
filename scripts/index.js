@@ -76,34 +76,20 @@ photoAddButton.addEventListener('click', () => {
   openPopup(photoAddPopup);
 });
 
-/*Переменные для popup с фотографией*/
-const photoPopup = document.querySelector('.popup_content_photo-big');
-const photoPopupImage = photoPopup.querySelector('.popup__image');
-const photoPopupCaption = photoPopup.querySelector('.popup__image-caption');
-
-/*Открываем popup с фотографией и заполняем его*/
-const handlePhotoCardCLick = (photoCardContent) => {
-  openPopup(photoPopup);
-  photoPopupImage.src = photoCardContent.link;
-  photoPopupImage.alt = photoCardContent.name;
-  photoPopupCaption.textContent = photoCardContent.name;
-
-}
 
 
-
-
-/*Загружаем фотокарточки из стартового массива в новый массив*/
-photoCardsList.append(...initialCards.map(item => new Card(item, '.photo-card-template').generateCard()));
-
-/*Функция, добавляющая фотокарточку в массив*/
-const addCard = (photoCardContent) => {
-  const newCard = new Card(photoCardContent, '.photo-card-template').generateCard();
-  newCard.addEventListener('click', () => handlePhotoCardCLick (photoCardContent));
-  photoCardsList.prepend(newCard);
+/*Функция добавления фотокарточки*/
+const addCard = photoCardContent => {
+  photoCardsList.prepend(new Card(photoCardContent, '.photo-card-template').generateCard());
 };
 
-/*Формируем карточку с данными из формы и вызываем функции добавления карточки в массив карточек и закрытия popup*/
+/*Загружаем фотокарточки из стартового массива в новый массив*/
+initialCards.reverse().forEach(item => addCard(item));
+
+
+
+
+/*В массив фотокарточек добавляем новую с данными из формы в массив карточек и закрываем popup*/
 const NewPhotoFormSubmit = evt => {
   evt.preventDefault();
   const card = {};
