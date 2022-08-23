@@ -20,14 +20,13 @@ const validationSettings = {
 
 
 /*Все для popup*/
-const handleClickonPopup = evt => {/*Функция для закрытия popup по клику на оверлей или кнопку "Закрыть"*/
+const popups = document.querySelectorAll('.popup');
+
+popups.forEach(popup => popup.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
     closePopup(evt.target.closest('.popup'));
   }
-}
-
-const popups = document.querySelectorAll('.popup');
-popups.forEach(popup => popup.addEventListener('click', handleClickonPopup));
+}));
 
 const closePopupWithEsc = evt => { /*Функция для закрытия popup по нажатию клавиши Esc*/
   if (evt.key === 'Escape') {
@@ -90,39 +89,15 @@ photoAddButton.addEventListener('click', () => { /*Открываем popup с �
   openPopup(photoAddPopup);
 });
 
-const addCard = photoCardContent => { /*Функция добавления фотокарточки*/
-  photoCardsList.prepend(new Card(photoCardContent, '.photo-card-template').generateCard());
+const createCard = photoCardContent => { /*Функция cоздания фотокарточки*/
+  return new Card(photoCardContent, '.photo-card-template').generateCard();
 };
 
+const addCard = card => { /*Функция добавления фотокарточки*/
+  photoCardsList.prepend(createCard(card));
+}
 
-const initialCards = [ /*Массив исходных фотокарточек */
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-initialCards.reverse().forEach(item => addCard(item)); /*Загружаем фотокарточки из стартового массива в новый массив*/
+photoCardsList.append(...initialCards.map(item => createCard(item))); /*Загружаем фотокарточки из стартового массива в новый массив*/
 
 const NewPhotoFormSubmit = evt => { /*В массив фотокарточек добавляем новую с данными из формы в массив карточек и закрываем popup*/
   evt.preventDefault();
