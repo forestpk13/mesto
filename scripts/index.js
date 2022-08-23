@@ -43,6 +43,11 @@ const closePopup = popup => {
   document.removeEventListener('keydown', closePopupWithEsc);
 }
 
+/*Переменные для popup с фотографией*/
+const photoPopup = document.querySelector('.popup_content_photo-big');
+const photoPopupImage = photoPopup.querySelector('.popup__image');
+const photoPopupCaption = photoPopup.querySelector('.popup__image-caption');
+
 
 /*Ниже - все для профиля*/
 /*Переменные для профиля и его формы заполнения*/
@@ -112,3 +117,4 @@ const NewPhotoFormSubmit = evt => { /*В массив фотокарточек �
 
 photoFormElement.addEventListener('submit', NewPhotoFormSubmit);
 
+export {openPopup, photoPopup, photoPopupImage, photoPopupCaption};

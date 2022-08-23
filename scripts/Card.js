@@ -1,3 +1,5 @@
+import {openPopup, photoPopup, photoPopupImage, photoPopupCaption} from './index.js';
+
 class Card {
   constructor(data, templateSelector){
     this._name = data.name;
@@ -8,13 +10,11 @@ class Card {
   }
 
   _getTemplate() {
-    const photoCardElement = document
-    .querySelector(this._templateSelector)
-    .content
-    .querySelector('.photo-card')
-    .cloneNode(true);
-
-    return photoCardElement;
+    return document
+      .querySelector(this._templateSelector)
+      .content
+      .querySelector('.photo-card')
+      .cloneNode(true);
   }
 
   _likeCard () {
@@ -26,16 +26,10 @@ class Card {
   }
 
   _handlePhotoCardCLick() {
-    const photoPopup = document.querySelector('.popup_content_photo-big');
-    photoPopup.classList.add('popup_opened');
-    photoPopup.querySelector('.popup__image').src = this._link;
-    photoPopup.querySelector('.popup__image').alt = this._name;
-    photoPopup.querySelector('.popup__image-caption').textContent = this._name;
-    document.addEventListener('keydown', evt => {
-      if (evt.key === 'Escape') {
-        photoPopup.classList.remove('popup_opened');
-      }
-    });
+    openPopup(photoPopup)
+    photoPopupImage.src = this._link;
+    photoPopupImage.alt = this._name;
+    photoPopupCaption.textContent = this._name;
   }
 
   _setEventListeners() {
