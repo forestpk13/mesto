@@ -1,18 +1,33 @@
-import {Card} from './Card.js';
-import {FormValidator} from './FormValidator.js';
+import {Card} from '../components/Card.js';
+import {Section} from '../components/Section.js';
+import {
+  initialCards,
+  popups,
+  photoPopup,
+  photoPopupImage,
+  photoPopupCaption,
+  profileEditButton,
+  profileEditPopup,
+  profileName,
+  profileDescription,
+  profileFormElement,
+  profileFormElementValidator,
+  inputName,
+  inputDescription,
+  photoAddPopup,
+  photoAddButton,
+  photoCardsList,
+  photoCardsListSelector,
+  photoFormElement,
+  photoFormElementValidator,
+  inputPhotoName,
+  inputPhotoLink
+} from '../utils/constants.js';
 
-/*Настройки для валидации*/
-const validationSettings = {
-  formSelector: '.form',
-  inputSelector: '.form__item',
-  submitButtonSelector: '.form__submit-button',
-  inputErrorClass: 'form__item_type_error',
-  errorClass: 'form__error_visible'
-};
+
+
 
 /*Все для popup*/
-const popups = document.querySelectorAll('.popup');
-
 popups.forEach(popup => popup.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
     closePopup(evt.target.closest('.popup'));
@@ -34,22 +49,11 @@ const closePopup = popup => {
   document.removeEventListener('keydown', closePopupWithEsc);
 }
 
-/*Переменные для popup с фотографией*/
-const photoPopup = document.querySelector('.popup_content_photo-big');
-const photoPopupImage = photoPopup.querySelector('.popup__image');
-const photoPopupCaption = photoPopup.querySelector('.popup__image-caption');
+
 
 
 /*Ниже - все для профиля*/
-/*Переменные для профиля и его формы заполнения*/
-const profileEditButton = document.querySelector('.profile__edit-button');
-const profileEditPopup = document.querySelector('.popup_content_edit-profile');
-const profileName = document.querySelector ('.profile__name');
-const profileDescription = document.querySelector('.profile__description');
-const profileFormElement = document.querySelector('#profile');
-const profileFormElementValidator = new FormValidator(validationSettings, profileFormElement);
-const inputName = profileFormElement.querySelector ('#profile-name');
-const inputDescription = profileFormElement.querySelector ('#profile-description');
+
 
 (function validateProfileFormElement() {profileFormElementValidator.enableValidation()})();
 
@@ -76,14 +80,7 @@ profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 
 
 /*Ниже - все для фотокарточек*/
-/*Переменные для фотокарточек и формы их добавления*/
-const photoAddPopup = document.querySelector('.popup_content_new-photo');
-const photoAddButton = document.querySelector('.profile__add-button');
-const photoCardsList = document.querySelector('.elements__list');
-const photoFormElement = document.querySelector('#photo');
-const photoFormElementValidator = new FormValidator(validationSettings, photoFormElement);
-const inputPhotoName = photoFormElement.querySelector ('#photo-name');
-const inputPhotoLink = photoFormElement.querySelector ('#photo-link');
+
 
 (function validatePhotoFormElement() {photoFormElementValidator.enableValidation()})();
 
@@ -99,7 +96,15 @@ const addCard = card => { /*Функция добавления фотокарт
   photoCardsList.prepend(createCard(card));
 }
 
-photoCardsList.append(...initialCards.map(item => createCard(item))); /*Загружаем фотокарточки из стартового массива в новый массив*/
+
+const initialPhotoCardsList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    initialPhotoCardsList.setItem(createCard(item));
+  }
+ }, photoCardsListSelector) /*Загружаем фотокарточки из стартового массива в новый массив*/
+
+ initialPhotoCardsList.renderItems();
 
 const NewPhotoFormSubmit = evt => { /*В массив фотокарточек добавляем новую с данными из формы в массив карточек и закрываем popup*/
   evt.preventDefault();

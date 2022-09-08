@@ -1,6 +1,7 @@
-import {openPopup, photoPopup, photoPopupImage, photoPopupCaption} from './index.js';
+import {openPopup, photoPopup, photoPopupImage, photoPopupCaption} from '../scripts/index.js';
 
-class Card {
+
+export class Card {
   constructor(data, templateSelector){
     this._name = data.name;
     this._description = data.name;
@@ -59,5 +60,3 @@ class Card {
     return this._element;
   }
 }
-
-export {Card};
