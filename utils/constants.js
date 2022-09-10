@@ -39,9 +39,9 @@ export const validationSettings = {
 };
 
 /*Переменные для popup с фотографией*/
-export const photoPopup = document.querySelector('.popup_content_photo-big');
+/*export const photoPopup = document.querySelector('.popup_content_photo-big');
 export const photoPopupImage = photoPopup.querySelector('.popup__image');
-export const photoPopupCaption = photoPopup.querySelector('.popup__image-caption');
+export const photoPopupCaption = photoPopup.querySelector('.popup__image-caption');*/
 
 /*Переменные для профиля и его формы заполнения*/
 export const profileEditButton = document.querySelector('.profile__edit-button');

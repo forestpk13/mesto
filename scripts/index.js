@@ -1,11 +1,10 @@
 import {Card} from '../components/Card.js';
 import {Section} from '../components/Section.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+
 import {
   initialCards,
   popups,
-  photoPopup,
-  photoPopupImage,
-  photoPopupCaption,
   profileEditButton,
   profileEditPopup,
   profileName,
@@ -88,8 +87,11 @@ photoAddButton.addEventListener('click', () => { /*Открываем popup с �
   openPopup(photoAddPopup);
 });
 
-const createCard = photoCardContent => { /*Функция cоздания фотокарточки*/
-  return new Card(photoCardContent, '.photo-card-template').generateCard();
+const createCard = ({ data }) => { /*Функция cоздания фотокарточки*/
+  return new Card({ data, handleCardCLick: () => {
+    new PopupWithImage({data}, '.popup_content_photo-big').open();
+  }
+  }, '.photo-card-template').generateCard();
 };
 
 const addCard = card => { /*Функция добавления фотокарточки*/
@@ -100,7 +102,7 @@ const addCard = card => { /*Функция добавления фотокарт
 const initialPhotoCardsList = new Section({
   items: initialCards,
   renderer: (item) => {
-    initialPhotoCardsList.setItem(createCard(item));
+    initialPhotoCardsList.setItem(createCard({ data: item }));
   }
  }, photoCardsListSelector) /*Загружаем фотокарточки из стартового массива в новый массив*/
 
@@ -111,7 +113,7 @@ const NewPhotoFormSubmit = evt => { /*В массив фотокарточек �
   const card = {};
   card.name = inputPhotoName.value;
   card.link = inputPhotoLink.value;
-  addCard(card);
+  addCard({ data: card });
   closePopup(photoAddPopup);
   photoFormElement.reset();
   photoFormElementValidator.disableSubmitButton();
@@ -119,4 +121,3 @@ const NewPhotoFormSubmit = evt => { /*В массив фотокарточек �
 
 photoFormElement.addEventListener('submit', NewPhotoFormSubmit);
 
-export {openPopup, photoPopup, photoPopupImage, photoPopupCaption};

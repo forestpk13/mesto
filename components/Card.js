@@ -1,11 +1,9 @@
-import {openPopup, photoPopup, photoPopupImage, photoPopupCaption} from '../scripts/index.js';
-
-
 export class Card {
-  constructor(data, templateSelector){
+  constructor({ data, handleCardCLick }, templateSelector){
     this._name = data.name;
     this._description = data.name;
     this._link = data.link;
+    this._handleCardCLick = handleCardCLick;
     this._templateSelector = templateSelector;
 
   }
@@ -26,13 +24,6 @@ export class Card {
     this._deleteButton.closest('.photo-card').remove();
   }
 
-  _handlePhotoCardCLick() {
-    openPopup(photoPopup)
-    photoPopupImage.src = this._link;
-    photoPopupImage.alt = this._name;
-    photoPopupCaption.textContent = this._name;
-  }
-
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
       this._likeCard();
@@ -43,7 +34,7 @@ export class Card {
     });
 
     this._photoCardImage.addEventListener('click', () => {
-      this._handlePhotoCardCLick();
+      this._handleCardCLick();
     });
   }
 
