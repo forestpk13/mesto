@@ -38,11 +38,6 @@ export const validationSettings = {
   errorClass: 'form__error_visible'
 };
 
-/*Переменные для popup с фотографией*/
-/*export const photoPopup = document.querySelector('.popup_content_photo-big');
-export const photoPopupImage = photoPopup.querySelector('.popup__image');
-export const photoPopupCaption = photoPopup.querySelector('.popup__image-caption');*/
-
 /*Переменные для профиля и его формы заполнения*/
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const profileEditPopup = document.querySelector('.popup_content_edit-profile');
@@ -54,7 +49,7 @@ export const inputName = profileFormElement.querySelector ('#profile-name');
 export const inputDescription = profileFormElement.querySelector ('#profile-description');
 
 /*Переменные для фотокарточек и формы их добавления*/
-export const photoAddPopup = document.querySelector('.popup_content_new-photo');
+/*export const photoAddPopup = document.querySelector('.popup_content_new-photo');*/
 export const photoAddButton = document.querySelector('.profile__add-button');
 export const photoCardsList = document.querySelector('.elements__list');
 export const photoCardsListSelector = '.elements__list';

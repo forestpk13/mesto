@@ -9,11 +9,9 @@ export class PopupWithImage extends Popup {
 
   open () {
     super.open();
-    const photoPopupImage = document.querySelector('.popup__image');
-    const photoPopupCaption = document.querySelector('.popup__image-caption');
-    photoPopupImage.src =  this._image;
-    photoPopupImage.alt = this._description;
-    photoPopupCaption.textContent = this._description;
+    document.querySelector('.popup__image').src =  this._image;
+    document.querySelector('.popup__image-caption').alt = this._description;
+    document.querySelector('.popup__image-caption').textContent = this._description;
   }
 
 }

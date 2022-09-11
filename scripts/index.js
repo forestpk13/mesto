@@ -1,6 +1,7 @@
 import {Card} from '../components/Card.js';
 import {Section} from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
 
 import {
   initialCards,
@@ -13,7 +14,6 @@ import {
   profileFormElementValidator,
   inputName,
   inputDescription,
-  photoAddPopup,
   photoAddButton,
   photoCardsList,
   photoCardsListSelector,
@@ -26,27 +26,9 @@ import {
 
 
 
-/*Все для popup*/
-popups.forEach(popup => popup.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
-    closePopup(evt.target.closest('.popup'));
-  }
-}));
 
-const closePopupWithEsc = evt => { /*Функция для закрытия popup по нажатию клавиши Esc*/
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-}
 
-const openPopup = popup => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupWithEsc);
-}
-const closePopup = popup => {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupWithEsc);
-}
+
 
 
 
@@ -83,13 +65,11 @@ profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 
 (function validatePhotoFormElement() {photoFormElementValidator.enableValidation()})();
 
-photoAddButton.addEventListener('click', () => { /*Открываем popup с формой добавления фотокарточки*/
-  openPopup(photoAddPopup);
-});
+
 
 const createCard = ({ data }) => { /*Функция cоздания фотокарточки*/
   return new Card({ data, handleCardCLick: () => {
-    new PopupWithImage({data}, '.popup_content_photo-big').open();
+    new PopupWithImage({data}, '.popup_content_photo-big').open().setEventListeners();
   }
   }, '.photo-card-template').generateCard();
 };
@@ -98,6 +78,16 @@ const addCard = card => { /*Функция добавления фотокарт
   photoCardsList.prepend(createCard(card));
 }
 
+const photoAddPopup = new PopupWithForm({ handleFormSubmit: evt => {
+  evt.preventDefault();
+}
+}, '.popup_content_new-photo');
+
+photoAddPopup.setEventListeners();
+
+photoAddButton.addEventListener('click', () => { /*Открываем popup с формой добавления фотокарточки*/
+  photoAddPopup.open();
+});
 
 const initialPhotoCardsList = new Section({
   items: initialCards,
@@ -108,7 +98,7 @@ const initialPhotoCardsList = new Section({
 
  initialPhotoCardsList.renderItems();
 
-const NewPhotoFormSubmit = evt => { /*В массив фотокарточек добавляем новую с данными из формы в массив карточек и закрываем popup*/
+/*const NewPhotoFormSubmit = evt => {
   evt.preventDefault();
   const card = {};
   card.name = inputPhotoName.value;
@@ -119,5 +109,5 @@ const NewPhotoFormSubmit = evt => { /*В массив фотокарточек �
   photoFormElementValidator.disableSubmitButton();
 }
 
-photoFormElement.addEventListener('submit', NewPhotoFormSubmit);
+photoFormElement.addEventListener('submit', NewPhotoFormSubmit);*/
 
