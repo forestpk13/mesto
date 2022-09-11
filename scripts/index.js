@@ -66,20 +66,32 @@ profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 (function validatePhotoFormElement() {photoFormElementValidator.enableValidation()})();
 
 
-
-const createCard = ({ data }) => { /*Функция cоздания фотокарточки*/
+/*Функция cоздания фотокарточки*/
+const createCard = ({data}) => { 
   return new Card({ data, handleCardCLick: () => {
-    new PopupWithImage({data}, '.popup_content_photo-big').open().setEventListeners();
+    const photoPopup = new PopupWithImage({data}, '.popup_content_photo-big');
+    photoPopup.open();
+    photoPopup.setEventListeners();
   }
   }, '.photo-card-template').generateCard();
 };
 
+
+
 const addCard = card => { /*Функция добавления фотокарточки*/
-  photoCardsList.prepend(createCard(card));
+  photoCardsList.prepend(createCard({ data: card }));
 }
 
-const photoAddPopup = new PopupWithForm({ handleFormSubmit: evt => {
-  evt.preventDefault();
+const photoAddPopup = new PopupWithForm({ handleFormSubmit: (event, info)  => {
+  event.preventDefault();
+  const card = {};
+  card.name = info.name;
+  card.link = info.link;
+  addCard(card);
+  photoAddPopup.close();
+  photoFormElement.reset();
+  photoFormElementValidator.disableSubmitButton();
+  
 }
 }, '.popup_content_new-photo');
 
