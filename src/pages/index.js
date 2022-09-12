@@ -1,7 +1,7 @@
-import { Card } from '../../components/Card.js';
-import { Section } from '../../components/Section.js';
-import { PopupWithImage } from '../../components/PopupWithImage.js';
-import { PopupWithForm } from '../../components/PopupWithForm.js';
+import { Card } from '../components/Card.js';
+import { Section } from '../components/Section.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
 import {
   initialCards,
   profileEditButton,
@@ -13,7 +13,7 @@ import {
   photoCardsListSelector,
   photoFormElementValidator,
   userInfo
-} from '../../utils/constants.js';
+} from '../utils/constants.js';
 
 
 /*Ниже - все для профиля*/
