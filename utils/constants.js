@@ -27,8 +27,6 @@ export const initialCards = [ /*Массив исходных фотокарто
   }
 ];
 
-export const popups = document.querySelectorAll('.popup');
-
 /*Настройки для валидации*/
 export const validationSettings = {
   formSelector: '.form',
@@ -55,5 +53,3 @@ export const photoCardsList = document.querySelector('.elements__list');
 export const photoCardsListSelector = '.elements__list';
 export const photoFormElement = document.querySelector('#photo');
 export const photoFormElementValidator = new FormValidator(validationSettings, photoFormElement);
-export const inputPhotoName = photoFormElement.querySelector ('#photo-name');
-export const inputPhotoLink = photoFormElement.querySelector ('#photo-link');
