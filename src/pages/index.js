@@ -1,5 +1,4 @@
 import '../pages/index.css';
-import jordanImage from '../images/header-logo.svg';
 import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
