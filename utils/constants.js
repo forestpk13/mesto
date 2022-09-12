@@ -1,4 +1,5 @@
 import { FormValidator } from "../components/FormValidator.js";
+import { UserInfo } from "../components/UserInfo.js";
 
 export const initialCards = [ /*Массив исходных фотокарточек */
   {
@@ -38,16 +39,13 @@ export const validationSettings = {
 
 /*Переменные для профиля и его формы заполнения*/
 export const profileEditButton = document.querySelector('.profile__edit-button');
-export const profileEditPopup = document.querySelector('.popup_content_edit-profile');
-export const profileName = document.querySelector ('.profile__name');
-export const profileDescription = document.querySelector('.profile__description');
 export const profileFormElement = document.querySelector('#profile');
 export const profileFormElementValidator = new FormValidator(validationSettings, profileFormElement);
+export const userInfo = new UserInfo({ name: '.profile__name', description: '.profile__description' });
 export const inputName = profileFormElement.querySelector ('#profile-name');
 export const inputDescription = profileFormElement.querySelector ('#profile-description');
 
 /*Переменные для фотокарточек и формы их добавления*/
-/*export const photoAddPopup = document.querySelector('.popup_content_new-photo');*/
 export const photoAddButton = document.querySelector('.profile__add-button');
 export const photoCardsList = document.querySelector('.elements__list');
 export const photoCardsListSelector = '.elements__list';
