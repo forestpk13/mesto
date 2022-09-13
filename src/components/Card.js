@@ -5,7 +5,6 @@ export class Card {
     this._link = data.link;
     this._handleCardCLick = handleCardCLick;
     this._templateSelector = templateSelector;
-
   }
 
   _getTemplate() {
@@ -43,8 +42,8 @@ export class Card {
     this._likeButton = this._element.querySelector('.photo-card__like-button');
     this._deleteButton = this._element.querySelector('.photo-card__delete-button');
     this._photoCardImage = this._element.querySelector('.photo-card__image');
-    this._element.querySelector('.photo-card__image').src = this._link;
-    this._element.querySelector('.photo-card__image').alt = this._name;
+    this._photoCardImage.src = this._link;
+    this._photoCardImage.alt = this._name;
     this._element.querySelector('.photo-card__title').textContent = this._name;
 
     this._setEventListeners();

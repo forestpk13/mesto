@@ -47,7 +47,5 @@ export const inputDescription = profileFormElement.querySelector ('#profile-desc
 
 /*Переменные для фотокарточек и формы их добавления*/
 export const photoAddButton = document.querySelector('.profile__add-button');
-export const photoCardsList = document.querySelector('.elements__list');
-export const photoCardsListSelector = '.elements__list';
 export const photoFormElement = document.querySelector('#photo');
 export const photoFormElementValidator = new FormValidator(validationSettings, photoFormElement);

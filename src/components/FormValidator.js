@@ -58,11 +58,15 @@ export class FormValidator {
 
   disableSubmitButton() {
     this._formSubmitButton.setAttribute('disabled', true);
-
   }
 
   enableValidation(){
      this._setEventListeners();
   }
 
+  resetValidation() {
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
 }
