@@ -38,11 +38,12 @@ profileEditButton.addEventListener('click', () => { /*Открываем popup �
 /*Ниже - все для фотокарточек*/
 photoFormElementValidator.enableValidation();/*Включаем валидацию*/
 
+const photoPopup = new PopupWithImage('.popup_content_photo-big');
+photoPopup.setEventListeners();
+
 const createCard = ({data}) => {/*Функция cоздания фотокарточки*/
   return new Card({ data, handleCardCLick: () => {
-    const photoPopup = new PopupWithImage('.popup_content_photo-big');
     photoPopup.open(data.link, data.name);
-    photoPopup.setEventListeners();
   }
   }, '.photo-card-template').generateCard();
 };

@@ -24,11 +24,6 @@ export class PopupWithForm extends Popup {
 
   }
 
-  open () {
-    super.open();
-    /*Скрыть ошибку*/
-  }
-
   close () {
     super.close();
     this._form.reset();
