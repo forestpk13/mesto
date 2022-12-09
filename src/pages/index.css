@@ -36,6 +36,7 @@
 @import url(../blocks/photo-card/__title/photo-card__title.css);
 @import url(../blocks/photo-card/__like-button/photo-card__like-button.css);
 @import url(../blocks/photo-card/__like-button/_active/photo-card__like-button_active.css);
+@import url(../blocks/photo-card/__likes/photo-card__likes.css);
 @import url(../blocks/photo-card/__delete-button/photo-card__delete-button.css);
 
 /*Стили блока popup*/

@@ -15,11 +15,11 @@
     <main class="content">
 
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/profile-photo.jpg')%>" alt="Аватар пользователя">
+        <img class="profile__avatar" src="" alt="Аватар пользователя">
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name"></h1>
           <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
-          <p class="profile__description">Исследователь океана</p>
+          <p class="profile__description"></p>
         </div>
         <button type="button" class="profile__add-button" aria-label="Добавить"></button>
       </section>
@@ -44,7 +44,7 @@
               <span class="form__error_field_profile-name form__error"></span>
             </label>
             <label class="form__field">
-              <input type="text" class="form__item" id="profile-description" name="description" placeholder="Укажите род деятельности" minlength="2" maxlength="200" required>
+              <input type="text" class="form__item" id="profile-description" name="about" placeholder="Укажите род деятельности" minlength="2" maxlength="200" required>
               <span class="form__error_field_profile-description form__error"></span>
             </label>
           </fieldset>
@@ -87,7 +87,10 @@
       <img class="photo-card__image">
       <div class="photo-card__description">
         <h2 class="photo-card__title">Карачаевск</h2>
-        <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
+        <div>
+          <button type="button" class="photo-card__like-button" aria-label="Нравится"></button>
+          <p class="photo-card__likes">1</p>
+        </div>
       </div>
       <button type="button" class="photo-card__delete-button" aria-label="Удалить"></button>
     </li>
