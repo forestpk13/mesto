@@ -3,6 +3,7 @@ export class Card {
     this._name = data.name;
     this._description = data.name;
     this._link = data.link;
+    this._likes = data.likes;
     this._handleCardCLick = handleCardCLick;
     this._templateSelector = templateSelector;
   }

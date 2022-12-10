@@ -45,6 +45,6 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify(data)
     })
-    .then(res => this._handleResponse(res));
+    .then(res => this._checkResponse(res));
   }
 }
