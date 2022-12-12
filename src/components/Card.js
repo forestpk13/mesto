@@ -4,7 +4,6 @@ export class Card {
     this._name = data.name;
     this._description = data.name;
     this._link = data.link;
-    this._likes = data.likes;
     this._id = data._id;
     this._currentUserId = currentUserId;
     this._handleCardCLick = handleCardCLick;
@@ -22,13 +21,13 @@ export class Card {
   }
 
   _checkLikeStatus() {
-    return this._likes
+    return this._data.likes
       .map(user => user._id)
       .some(id => id === this._currentUserId)
   }
 
   _updateLikes() {
-    this._likesCounter.textContent = this._likes.length;
+    this._likesCounter.textContent = this._data.likes.length;
     if (this._checkLikeStatus()) {
       this._likeButton.classList.add('photo-card__like-button_active');
     } else {
@@ -37,24 +36,14 @@ export class Card {
   }
 
   _likeCard () {
-    if(this._likeButton.classList.contains('photo-card__like-button_active')) {
-      this._likeButton.classList.remove('photo-card__like-button_active');
-      this._deleteLike(this._id)
-        .then(res => {
-          console.log(this._data);
-          console.log(res);
-        })
-    } else {
-      this._likeButton.classList.add('photo-card__like-button_active');
-
-      this._setLike(this._data._id)
-        .then(res => {
-          console.log(this._data);
-          console.log(res);
-        })
+    const handleClick = this._checkLikeStatus() ? this._deleteLike : this._setLike;
+    handleClick(this._id)
+      .then((res) => {
+        this._data = res;
+        this._updateLikes();
+      })
+      .catch((err) => console.log(`Ошибка при установке лайка: ${err}`))
     }
-
-  }
 
   _deleleteCard () {
     this._deleteButton.closest('.photo-card').remove();

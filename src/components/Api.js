@@ -31,7 +31,8 @@ export class Api {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: method,
       headers: this._headers
-    });
+    })
+      .then(res => this._checkResponse(res));
   }
 
   setLike(id) {
