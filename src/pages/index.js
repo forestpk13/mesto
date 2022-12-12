@@ -4,14 +4,14 @@ import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
+import { UserInfo } from "../components/UserInfo.js";
 import {
   profileEditButton,
   profileFormElementValidator,
   inputName,
   inputDescription,
   photoAddButton,
-  photoFormElementValidator,
-  userInfo
+  photoFormElementValidator
 } from '../utils/constants.js';
 
 const api = new Api({
@@ -32,20 +32,22 @@ const photoCardsList = new Section({
     photoCardsList.setItem(createCard({ data: item }));
   }}, '.elements__list')
 
-
+let userInfo;
 
 Promise.all([api.getInitialCards(), api.getProfileData()])
   .then(([cards, user]) => {
+    userInfo = new UserInfo({ name: '.profile__name', about: '.profile__description', avatar: '.profile__avatar' }, user);
     photoCardsList.renderItems(cards);
     userInfo.setUserInfo(user);
     userInfo.setUserAvatar(user);
+    console.log(user);
   })
   .catch(err => {
     console.log(`Ошибка обращения к серверу ${err}`);
   });
 
-
-
+const setLike = (id) => api.setLike(id);
+const deleteLike = (id) => api.deleteLike(id);
 
 /*Ниже - все для профиля*/
 profileFormElementValidator.enableValidation(); /*Включаем валидацию*/
@@ -81,7 +83,7 @@ const photoPopup = new PopupWithImage('.popup_content_photo-big');
 photoPopup.setEventListeners();
 
 const createCard = ({data}) => {/*Функция cоздания фотокарточки*/
-  return new Card({ data, handleCardCLick: () => {
+  return new Card({ data, currentUserId: userInfo.getUserId(), setLike, deleteLike, handleCardCLick: () => {
     photoPopup.open(data.link, data.name);
   }
   }, '.photo-card-template').generateCard();

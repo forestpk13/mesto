@@ -27,6 +27,21 @@ export class Api {
       .then(res => this._checkResponse(res));
   }
 
+  _handleLike(method, id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: method,
+      headers: this._headers
+    });
+  }
+
+  setLike(id) {
+    return this._handleLike('PUT', id);
+  }
+
+  deleteLike(id) {
+    return this._handleLike('DELETE', id);
+  }
+
   getInitialCards() {
     return this._getData('/cards');
   }

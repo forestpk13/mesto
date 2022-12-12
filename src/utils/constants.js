@@ -1,5 +1,4 @@
 import { FormValidator } from "../components/FormValidator.js";
-import { UserInfo } from "../components/UserInfo.js";
 
 /*Настройки для валидации*/
 export const validationSettings = {
@@ -14,7 +13,6 @@ export const validationSettings = {
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const profileFormElement = document.querySelector('#profile');
 export const profileFormElementValidator = new FormValidator(validationSettings, profileFormElement);
-export const userInfo = new UserInfo({ name: '.profile__name', about: '.profile__description', avatar: '.profile__avatar' });
 export const inputName = profileFormElement.querySelector ('#profile-name');
 export const inputDescription = profileFormElement.querySelector ('#profile-description');
 
