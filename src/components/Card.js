@@ -5,6 +5,7 @@ export class Card {
     this._description = data.name;
     this._link = data.link;
     this._id = data._id;
+    this._currentUserId = currentUserId;
     this._isOwnCard = data.owner._id === currentUserId ? true : false;
     this._openCardDeletePopup = openCardDeletePopup;
     this._handleCardCLick = handleCardCLick;
@@ -46,7 +47,8 @@ export class Card {
         this._updateLikes();
       })
       .catch((err) => console.log(`Ошибка при установке лайка: ${err}`))
-  }
+    }
+
 
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {

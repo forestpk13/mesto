@@ -115,10 +115,9 @@ cardDeleteConfirmPopup.setEventListeners();
 
 const openCardDeletePopup = () => cardDeleteConfirmPopup.open();
 
-
 const createCard = ({data}) => {/*Функция cоздания фотокарточки*/
-  return new Card({data, currentUserId: userInfo.getUserId(), setLike, deleteLike, openCardDeletePopup, handleCardCLick: () => {
-    photoPopup.open(data);
+  return new Card({ data, currentUserId: userInfo.getUserId(), setLike, deleteLike, openCardDeletePopup, handleCardCLick: () => {
+    photoPopup.open(data.link, data.name);
   }
   }, '.photo-card-template').generateCard();
 };
