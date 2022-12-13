@@ -12,6 +12,8 @@ export const validationSettings = {
 /*Переменные для профиля и его формы заполнения*/
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const profileFormElement = document.querySelector('#profile');
+export const profileAvatarFormElement = document.querySelector('#avatar');
+export const profileAvatarFormElementValidator = new FormValidator(validationSettings, profileAvatarFormElement);
 export const profileFormElementValidator = new FormValidator(validationSettings, profileFormElement);
 export const inputName = profileFormElement.querySelector ('#profile-name');
 export const inputDescription = profileFormElement.querySelector ('#profile-description');

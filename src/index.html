@@ -15,7 +15,9 @@
     <main class="content">
 
       <section class="profile">
-        <img class="profile__avatar" src="" alt="Аватар пользователя">
+        <button class="profile__avatar-wrapper">
+          <img class="profile__avatar" src="" alt="Аватар пользователя">
+        </button>
         <div class="profile__info">
           <h1 class="profile__name"></h1>
           <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
@@ -53,6 +55,22 @@
       </div>
     </div>
 
+    <div class="popup popup_content_edit-avatar">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+        <form class="form" id="avatar" name="avatar" novalidate>
+          <h2 class="form__title">Обновить аватар</h2>
+          <fieldset class="form__fields">
+            <label class="form__field">
+              <input type="url" class="form__item" id="avatar-link" name="avatar" placeholder="Ссылка на аватар" minlength="7" required>
+              <span class="form__error form__error_field_avatar-link"></span>
+            </label>
+          </fieldset>
+          <button type="submit" class="button form__submit-button" name="avatar-edit" value="Сохранить">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
     <div class="popup popup_content_new-photo">
       <div class="popup__container">
         <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
@@ -79,6 +97,16 @@
       <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
       <img class="popup__image" src="#" alt="#">
       <h3 class="popup__image-caption"></h3>
+    </div>
+  </div>
+
+  <div class="popup popup_content_confirmation">
+    <div class="popup__container">
+      <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+      <form class="form form_content_comfirmation" name="confirm" novalidate>
+        <h3 class="form__title">Вы уверены?</h3>
+        <button type="submit" class="button form__submit-button" name="confirm" value="Да">Да</button>
+      </form>
     </div>
   </div>
 

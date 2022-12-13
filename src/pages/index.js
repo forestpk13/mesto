@@ -11,7 +11,8 @@ import {
   inputName,
   inputDescription,
   photoAddButton,
-  photoFormElementValidator
+  photoFormElementValidator,
+  profileAvatarFormElementValidator
 } from '../utils/constants.js';
 
 const api = new Api({
@@ -66,6 +67,25 @@ const profileEditPopup = new PopupWithForm({ handleFormSubmit: (event, user)  =>
   profileEditPopup.close();
 }
 }, '.popup_content_edit-profile');
+
+profileAvatarFormElementValidator.enableValidation();
+
+const avatarEditPopup = new PopupWithForm({ handleFormSubmit: (event, avatar)  => {
+  event.preventDefault();
+  console.log(avatar);
+  avatarEditPopup.close();
+  profileAvatarFormElementValidator.disableSubmitButton();
+}
+}, '.popup_content_edit-avatar');
+
+avatarEditPopup.setEventListeners();
+
+const avatarEditButton = document.querySelector('.profile__avatar-wrapper');
+
+avatarEditButton.addEventListener('click', () => {
+  avatarEditPopup.open();
+  profileAvatarFormElementValidator.resetValidation();
+})
 
 profileEditPopup.setEventListeners();
 
