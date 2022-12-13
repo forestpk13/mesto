@@ -1,11 +1,13 @@
 export class Card {
-  constructor({ data, currentUserId, setLike, deleteLike, handleCardCLick }, templateSelector){
+  constructor({ data, currentUserId, setLike, deleteLike, openCardDeletePopup, handleCardCLick }, templateSelector){
     this._data = data;
     this._name = data.name;
     this._description = data.name;
     this._link = data.link;
     this._id = data._id;
     this._currentUserId = currentUserId;
+    this._isOwnCard = data.owner._id === currentUserId ? true : false;
+    this._openCardDeletePopup = openCardDeletePopup;
     this._handleCardCLick = handleCardCLick;
     this._setLike = setLike;
     this._deleteLike = deleteLike;
@@ -45,9 +47,6 @@ export class Card {
       .catch((err) => console.log(`Ошибка при установке лайка: ${err}`))
     }
 
-  _deleleteCard () {
-    this._deleteButton.closest('.photo-card').remove();
-  }
 
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
@@ -55,7 +54,7 @@ export class Card {
     });
 
     this._deleteButton.addEventListener('click', () => {
-      this._deleleteCard();
+      this._openCardDeletePopup();
     });
 
     this._photoCardImage.addEventListener('click', () => {
@@ -73,8 +72,17 @@ export class Card {
     this._photoCardImage.alt = this._name;
     this._element.querySelector('.photo-card__title').textContent = this._name;
 
+    if (!this._isOwnCard) {
+      this._deleteButton.remove();
+    }
+
     this._updateLikes();
     this._setEventListeners();
     return this._element;
   }
+
+  deleleteCard () {
+    this._element.remove();
+  }
+
 }

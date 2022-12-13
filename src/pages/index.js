@@ -12,7 +12,8 @@ import {
   inputDescription,
   photoAddButton,
   photoFormElementValidator,
-  profileAvatarFormElementValidator
+  profileAvatarFormElementValidator,
+  photoDeleteFormElement
 } from '../utils/constants.js';
 
 const api = new Api({
@@ -41,7 +42,6 @@ Promise.all([api.getInitialCards(), api.getProfileData()])
     photoCardsList.renderItems(cards);
     userInfo.setUserInfo(user);
     userInfo.setUserAvatar(user);
-    console.log(user);
   })
   .catch(err => {
     console.log(`Ошибка обращения к серверу ${err}`);
@@ -104,8 +104,18 @@ photoFormElementValidator.enableValidation();/*Включаем валидаци
 const photoPopup = new PopupWithImage('.popup_content_photo-big');
 photoPopup.setEventListeners();
 
+const cardDeleteConfirmPopup = new PopupWithForm({ handleFormSubmit: (event, card)  => {
+  event.preventDefault();
+  cardDeleteConfirmPopup.close();
+}
+}, '.popup_content_confirmation');
+
+cardDeleteConfirmPopup.setEventListeners();
+
+const openCardDeletePopup = () => cardDeleteConfirmPopup.open();
+
 const createCard = ({data}) => {/*Функция cоздания фотокарточки*/
-  return new Card({ data, currentUserId: userInfo.getUserId(), setLike, deleteLike, handleCardCLick: () => {
+  return new Card({ data, currentUserId: userInfo.getUserId(), setLike, deleteLike, openCardDeletePopup, handleCardCLick: () => {
     photoPopup.open(data.link, data.name);
   }
   }, '.photo-card-template').generateCard();
