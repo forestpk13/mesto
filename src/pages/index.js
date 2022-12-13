@@ -72,6 +72,8 @@ profileAvatarFormElementValidator.enableValidation();
 
 const avatarEditPopup = new PopupWithForm({ handleFormSubmit: (event, avatar)  => {
   event.preventDefault();
+  api.setProfileAvatar(avatar);
+  userInfo.setUserAvatar(avatar);
   console.log(avatar);
   avatarEditPopup.close();
   profileAvatarFormElementValidator.disableSubmitButton();

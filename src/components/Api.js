@@ -55,6 +55,10 @@ export class Api {
     return this._changeData(data, '/users/me');
   }
 
+  setProfileAvatar(avatar) {
+    return this._changeData(avatar, '/users/me/avatar');
+  }
+
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
