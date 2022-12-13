@@ -22,3 +22,4 @@ export const inputDescription = profileFormElement.querySelector ('#profile-desc
 export const photoAddButton = document.querySelector('.profile__add-button');
 export const photoFormElement = document.querySelector('#photo');
 export const photoFormElementValidator = new FormValidator(validationSettings, photoFormElement);
+export const photoDeleteFormElement = document.querySelector('#confirm');
