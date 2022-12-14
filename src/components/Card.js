@@ -2,7 +2,6 @@ export class Card {
   constructor({ data, currentUserId, setLike, deleteLike, openCardDeletePopup, handleCardCLick }, templateSelector){
     this._data = data;
     this._name = data.name;
-    this._description = data.name;
     this._link = data.link;
     this._id = data._id;
     this._currentUserId = currentUserId;
@@ -39,11 +38,9 @@ export class Card {
   _updateLikes() {
     this._likesCounter.textContent = this._data.likes.length;
     if (this._checkLikeStatus()) {
-      console.log('setlike')
       this._likeButton.classList.add('photo-card__like-button_active');
     } else {
       this._likeButton.classList.remove('photo-card__like-button_active');
-      console.log('removelike')
     }
   }
 

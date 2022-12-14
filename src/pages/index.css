@@ -64,6 +64,11 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
+/*Стили блока loading-screen*/
+@import url(../blocks/loading-screen/loading-screen.css);
+@import url(../blocks/loading-screen/_disabled/loading-screen_disabled.css);
+@import url(../blocks/loading-screen/__loader/loading-screen__loader.css);
+
 
 
 

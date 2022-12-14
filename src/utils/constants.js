@@ -9,6 +9,9 @@ export const validationSettings = {
   errorClass: 'form__error_visible'
 };
 
+export const loadingScreen = document.querySelector('.loading-screen'); /*Экран загрузки*/
+export const avatarEditButton = document.querySelector('.profile__avatar-wrapper'); /*Кнопка смены аватарки*/
+
 /*Переменные для профиля и его формы заполнения*/
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const profileFormElement = document.querySelector('#profile');
