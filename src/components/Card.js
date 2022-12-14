@@ -22,6 +22,14 @@ export class Card {
       .cloneNode(true);
   }
 
+  getId() {
+    return this._data._id;
+  }
+
+  deleteCard() {
+    this._element.remove();
+  }
+
   _checkLikeStatus() {
     return this._data.likes
       .map(user => user._id)
@@ -56,7 +64,7 @@ export class Card {
     });
 
     this._deleteButton.addEventListener('click', () => {
-      this._openCardDeletePopup();
+      this._openCardDeletePopup(this);
     });
 
     this._photoCardImage.addEventListener('click', () => {
@@ -81,9 +89,5 @@ export class Card {
     this._updateLikes();
     this._setEventListeners();
     return this._element;
-  }
-
-  deleleteCard () {
-    this._element.remove();
   }
 }

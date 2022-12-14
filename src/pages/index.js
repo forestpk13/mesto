@@ -4,6 +4,7 @@ import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 import { UserInfo } from "../components/UserInfo.js";
 import {
   profileEditButton,
@@ -105,15 +106,26 @@ photoFormElementValidator.enableValidation();/*Включаем валидаци
 const photoPopup = new PopupWithImage('.popup_content_photo-big');
 photoPopup.setEventListeners();
 
-const cardDeleteConfirmPopup = new PopupWithForm({ handleFormSubmit: (event, card)  => {
-  event.preventDefault();
+const openCardDeletePopup = (card) => {
+  cardDeleteConfirmPopup.open();
+  cardDeleteConfirmPopup.setData(card);
+};
+
+const cardDeleteConfirmPopup = new PopupWithConfirmation({ handleFormSubmit: (card)  => {
+  console.log(card.getId());
+  api.deleteCard(card.getId())
+    .then(() => {
+      card.deleteCard();
+      console.log('ok');
+    });
   cardDeleteConfirmPopup.close();
 }
 }, '.popup_content_confirmation');
 
+
 cardDeleteConfirmPopup.setEventListeners();
 
-const openCardDeletePopup = () => cardDeleteConfirmPopup.open();
+
 
 const createCard = ({data}) => {/*Функция cоздания фотокарточки*/
   return new Card({ data, currentUserId: userInfo.getUserId(), setLike, deleteLike, openCardDeletePopup, handleCardCLick: () => {
