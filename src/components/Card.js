@@ -1,6 +1,6 @@
 export class Card {
   constructor({ data, currentUserId, setLike, deleteLike, openCardDeletePopup, handleCardCLick }, templateSelector){
-    this._data = data;
+    this.cardData = data; /*Сделал публичным, чтобы обращаться из хэндлера для апдейта лайков*/
     this._name = data.name;
     this._link = data.link;
     this._id = data._id;
@@ -22,7 +22,7 @@ export class Card {
   }
 
   getId() {
-    return this._data._id;
+    return this.cardData._id;
   }
 
   deleteCard() {
@@ -30,13 +30,13 @@ export class Card {
   }
 
   _checkLikeStatus() {
-    return this._data.likes
+    return this.cardData.likes
       .map(user => user._id)
       .some(id => id === this._currentUserId)
   }
 
-  _updateLikes() {
-    this._likesCounter.textContent = this._data.likes.length;
+  updateLikes() { /*Сделал публичным, чтобы обращаться из хэндлера для апдейта лайков*/
+    this._likesCounter.textContent = this.cardData.likes.length;
     if (this._checkLikeStatus()) {
       this._likeButton.classList.add('photo-card__like-button_active');
     } else {
@@ -46,12 +46,7 @@ export class Card {
 
   _likeCard () {
     const handleClick = this._checkLikeStatus() ? this._deleteLike : this._setLike;
-    handleClick(this._id)
-      .then((res) => {
-        this._data = res;
-        this._updateLikes();
-      })
-      .catch((err) => console.log(`Ошибка при установке лайка: ${err}`))
+    handleClick(this);
     }
 
 
@@ -83,7 +78,7 @@ export class Card {
       this._deleteButton.remove();
     }
 
-    this._updateLikes();
+    this.updateLikes();
     this._setEventListeners();
     return this._element;
   }

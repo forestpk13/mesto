@@ -41,9 +41,7 @@ profileFormElementValidator.enableValidation(); /*Включаем валида�
 const editProfile = (user) => {
   return api.setProfileData(user)
   .then(result => userInfo.setUserInfo(result))
-  .catch(err => {
-    console.log(err)
-  });
+  .catch(err => console.log(err));
 }
 
 const profileEditPopup = new PopupWithForm({ handleFormSubmit: editProfile }, '.popup_content_edit-profile');
@@ -64,12 +62,8 @@ profileAvatarFormElementValidator.enableValidation();
 
 const changeAvatar = (avatar) => {
   return api.setProfileAvatar(avatar)
-    .then(res => {
-      userInfo.setUserAvatar(res);
-    })
-    .catch(err => {
-      console.log(err)
-    });
+    .then(res => userInfo.setUserAvatar(res))
+    .catch(err => console.log(err));
 }
 
 const avatarEditPopup = new PopupWithForm({ handleFormSubmit: changeAvatar }, '.popup_content_edit-avatar');
@@ -85,17 +79,20 @@ avatarEditButton.addEventListener('click', () => {
 /*Ниже - все для фотокарточек*/
 photoFormElementValidator.enableValidation();/*Включаем валидацию*/
 
-const setLike = (id) => {
-  return api.setLike(id)
-    .catch(err => {
-      console.log(err)
-    });
+const updateLikes = (card, data) => {
+  card.cardData = data;
+  card.updateLikes();
+}
+
+const setLike = (card) => {
+  return api.setLike(card._id)
+    .then(res => updateLikes(card, res))
+    .catch(err => console.log(`Ошибка при установке лайка: ${err}`));
 };
-const deleteLike = (id) => {
-  return api.deleteLike(id)
-    .catch(err => {
-      console.log(err)
-    });
+const deleteLike = (card) => {
+  return api.deleteLike(card._id)
+    .then(res => updateLikes(card, res))
+    .catch(err => console.log(`Ошибка при снятии лайка: ${err}`));
 };
 
 const photoPopup = new PopupWithImage('.popup_content_photo-big');
@@ -108,12 +105,8 @@ const openCardDeletePopup = (card) => {
 
 const deleteCard = (card) => {
   return api.deleteCard(card.getId())
-    .then(() => {
-      card.deleteCard();
-    })
-    .catch(err => {
-      console.log(err)
-    });
+    .then(() => card.deleteCard())
+    .catch(err => console.log(err));
 }
 
 const createCard = ({data}) => {/*Функция cоздания фотокарточки*/
@@ -129,12 +122,8 @@ const createCard = ({data}) => {/*Функция cоздания фотокар�
 
 const addCard = (data) => {
   return api.addCard(data)
-    .then(data => {
-      renderCard(data);
-    })
-    .catch(err => {
-      console.log(err)
-    });
+    .then(data => renderCard(data))
+    .catch(err => console.log(err));
 }
 
 const cardDeleteConfirmPopup = new PopupWithConfirmation({ handleFormSubmit: deleteCard }, '.popup_content_confirmation');
