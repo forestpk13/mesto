@@ -15,13 +15,17 @@ export class UserInfo {
   }
 
   setUserInfo (user) {
-    this._user.name = user.name;
-    this._user.about = user.about;
-    this._name.textContent = user.name;
-    this._about.textContent = user.about;
+    if (user.name || user.about) {
+      this._user.name = user.name;
+      this._user.about = user.about;
+      this._name.textContent = user.name;
+      this._about.textContent = user.about;
+    }
   }
 
   setUserAvatar(user) {
-    this._avatar.src = user.avatar;
+    if(user.avatar) {
+      this._avatar.src = user.avatar;
+    }
   }
 }
