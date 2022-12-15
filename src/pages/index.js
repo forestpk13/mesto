@@ -42,38 +42,22 @@ const photoCardsList = new Section({
 /*Ниже - все для профиля*/
 profileFormElementValidator.enableValidation(); /*Включаем валидацию*/
 
-const renderButtonTextSaving = (form) => {
-  renderLoading(form.submitButton, 'Сохранение...');
-}
-
-const renderButtonTextSaved = (form) => {
-  renderLoading(form.submitButton, 'Сохранено!');
-}
-
-const renderButtonTextError = (form) => {
-  renderLoading(form.submitButton, 'Ошибка сервера');
-}
-
-const renderButtonTextSave = (form) => {
-  renderLoading(form.submitButton, 'Сохранить');
-}
-
 const editProfile = (form) => {
-  renderButtonTextSaving(form);
+  renderLoading(form.submitButton, 'Сохранение...');
   profileFormElementValidator.disableSubmitButton();
   return api.setProfileData(form.getInputValues())
     .then(result => {
       userInfo.setUserInfo(result);
-      renderButtonTextSaved(form);
+      renderLoading(form.submitButton, 'Сохранено!')
       form.close();
     })
     .catch((err) => {
       console.log(`Ошибка выполнения запроса к серверу - ${err}`);
-      renderButtonTextError(form);
+      renderLoading(form.submitButton, 'Ошибка сервера');;
     })
     .finally(() => {
       setTimeout(() => {
-        renderButtonTextSave(form);
+        renderLoading(form.submitButton, 'Сохранить');
       }, 1500);
     });
 }
@@ -95,21 +79,21 @@ profileEditButton.addEventListener('click', () => { /*Открываем popup �
 profileAvatarFormElementValidator.enableValidation();
 
 const changeAvatar = (form) => {
-  renderButtonTextSaving(form);
+  renderLoading(form.submitButton, 'Сохранение...');
   profileAvatarFormElementValidator.disableSubmitButton();
   return api.setProfileAvatar(form.getInputValues())
     .then(res => {
       userInfo.setUserAvatar(res)
-      renderButtonTextSaved(form);
+      renderLoading(form.submitButton, 'Сохранено!')
       form.close();
     })
     .catch(err => {
       console.log(`Ошибка выполнения запроса к серверу - ${err}`);
-      renderButtonTextError(form)
+      renderLoading(form.submitButton, 'Ошибка сервера');
     })
     .finally(() => {
       setTimeout(() => {
-        renderButtonTextSave(form);
+        renderLoading(form.submitButton, 'Сохранить');
       }, 1500);
     });
 }
@@ -150,23 +134,29 @@ const photoPopup = new PopupWithImage('.popup_content_photo-big');
 photoPopup.setEventListeners();
 
 const openCardDeletePopup = (card) => {
+  confirmFormElementValidator.enableSubmitButton();
   cardDeleteConfirmPopup.open();
   cardDeleteConfirmPopup.setData(card);
 };
 
 const deleteCard = (form, card) => {
-  renderButtonTextSaving(form);
+  renderLoading(form.submitButton, 'Сохранение...');
   confirmFormElementValidator.disableSubmitButton();
   return api.deleteCard(card.getId())
     .then(() => {
       card.deleteCard();
-      renderButtonTextSaved(form);
+      renderLoading(form.submitButton, 'Сохранено!')
       form.close();
     })
     .catch(err => {
       console.log(`Ошибка выполнения запроса к серверу - ${err}`);
-      renderButtonTextError(form)
+      renderLoading(form.submitButton, 'Ошибка сервера');
     })
+    .finally(() => {
+      setTimeout(() => {
+        renderLoading(form.submitButton, 'Да');
+      }, 1000);
+    });
 }
 
 const createCard = ({data}) => {/*Функция cоздания фотокарточки*/
@@ -181,21 +171,21 @@ const createCard = ({data}) => {/*Функция cоздания фотокар�
 };
 
 const addCard = (form) => {
-  renderButtonTextSaving(form);
+  renderLoading(form.submitButton, 'Сохранение...');
   photoFormElementValidator.disableSubmitButton();
   return api.addCard(form.getInputValues())
     .then(data => {
       renderCard(data);
-      renderButtonTextSaved(form);
+      renderLoading(form.submitButton, 'Сохранено!')
       form.close();
     })
     .catch(err => {
       console.log(`Ошибка выполнения запроса к серверу - ${err}`);
-      renderButtonTextError(form);
+      renderLoading(form.submitButton, 'Ошибка сервера');;
     })
     .finally(() => {
       setTimeout(() => {
-        renderButtonTextSave(form);
+        renderLoading(form.submitButton, 'Сохранить');
       }, 1500);
     });
 }
