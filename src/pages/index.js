@@ -67,6 +67,9 @@ const changeAvatar = (avatar) => {
     .then(res => {
       userInfo.setUserAvatar(res);
     })
+    .catch(err => {
+      console.log(err)
+    });
 }
 
 const avatarEditPopup = new PopupWithForm({ handleFormSubmit: changeAvatar }, '.popup_content_edit-avatar');
@@ -82,8 +85,18 @@ avatarEditButton.addEventListener('click', () => {
 /*Ниже - все для фотокарточек*/
 photoFormElementValidator.enableValidation();/*Включаем валидацию*/
 
-const setLike = (id) => api.setLike(id);
-const deleteLike = (id) => api.deleteLike(id);
+const setLike = (id) => {
+  return api.setLike(id)
+    .catch(err => {
+      console.log(err)
+    });
+};
+const deleteLike = (id) => {
+  return api.deleteLike(id)
+    .catch(err => {
+      console.log(err)
+    });
+};
 
 const photoPopup = new PopupWithImage('.popup_content_photo-big');
 photoPopup.setEventListeners();
@@ -97,6 +110,9 @@ const deleteCard = (card) => {
   return api.deleteCard(card.getId())
     .then(() => {
       card.deleteCard();
+    })
+    .catch(err => {
+      console.log(err)
     });
 }
 
@@ -116,6 +132,9 @@ const addCard = (data) => {
     .then(data => {
       renderCard(data);
     })
+    .catch(err => {
+      console.log(err)
+    });
 }
 
 const cardDeleteConfirmPopup = new PopupWithConfirmation({ handleFormSubmit: deleteCard }, '.popup_content_confirmation');
