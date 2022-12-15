@@ -16,6 +16,7 @@ import {
   photoAddButton,
   photoFormElementValidator,
   profileAvatarFormElementValidator,
+  confirmFormElementValidator
 } from '../utils/constants.js';
 import { renderLoading } from '../utils/utils.js';
 
@@ -126,6 +127,7 @@ avatarEditButton.addEventListener('click', () => {
 
 /*Ниже - все для фотокарточек*/
 photoFormElementValidator.enableValidation();/*Включаем валидацию*/
+confirmFormElementValidator.enableValidation();
 
 const updateLikes = (card, data) => {
   card.cardData = data;
@@ -143,6 +145,7 @@ const deleteLike = (card) => {
     .catch(err => console.log(`Ошибка при снятии лайка: ${err}`));
 };
 
+
 const photoPopup = new PopupWithImage('.popup_content_photo-big');
 photoPopup.setEventListeners();
 
@@ -151,10 +154,19 @@ const openCardDeletePopup = (card) => {
   cardDeleteConfirmPopup.setData(card);
 };
 
-const deleteCard = (card) => {
+const deleteCard = (form, card) => {
+  renderButtonTextSaving(form);
+  confirmFormElementValidator.disableSubmitButton();
   return api.deleteCard(card.getId())
-    .then(() => card.deleteCard())
-    .catch(err => console.log(err));
+    .then(() => {
+      card.deleteCard();
+      renderButtonTextSaved(form);
+      form.close();
+    })
+    .catch(err => {
+      console.log(`Ошибка выполнения запроса к серверу - ${err}`);
+      renderButtonTextError(form)
+    })
 }
 
 const createCard = ({data}) => {/*Функция cоздания фотокарточки*/
@@ -179,7 +191,7 @@ const addCard = (form) => {
     })
     .catch(err => {
       console.log(`Ошибка выполнения запроса к серверу - ${err}`);
-      renderButtonTextError(form)
+      renderButtonTextError(form);
     })
     .finally(() => {
       setTimeout(() => {

@@ -26,3 +26,7 @@ export const photoAddButton = document.querySelector('.profile__add-button');
 export const photoFormElement = document.querySelector('#photo');
 export const photoFormElementValidator = new FormValidator(validationSettings, photoFormElement);
 export const photoDeleteFormElement = document.querySelector('#confirm');
+
+/*Переменные для модалки с подверждение удаления фотокарточки*/
+export const confirmFormelement = document.querySelector('#confirm');
+export const confirmFormElementValidator = new FormValidator(validationSettings, confirmFormelement);
