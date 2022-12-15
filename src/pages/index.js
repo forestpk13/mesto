@@ -17,6 +17,7 @@ import {
   photoFormElementValidator,
   profileAvatarFormElementValidator,
 } from '../utils/constants.js';
+import { renderLoading } from '../utils/utils.js';
 
 
 /*Создаем экземпляр класса Api*/
@@ -35,13 +36,45 @@ const photoCardsList = new Section({
   }}, '.elements__list')
 
 
+
+
 /*Ниже - все для профиля*/
 profileFormElementValidator.enableValidation(); /*Включаем валидацию*/
 
-const editProfile = (user) => {
-  return api.setProfileData(user)
-  .then(result => userInfo.setUserInfo(result))
-  .catch(err => console.log(err));
+const renderButtonTextSaving = (form) => {
+  renderLoading(form.submitButton, 'Сохранение...');
+}
+
+const renderButtonTextSaved = (form) => {
+  renderLoading(form.submitButton, 'Сохранено!');
+}
+
+const renderButtonTextError = (form) => {
+  renderLoading(form.submitButton, 'Ошибка сервера');
+}
+
+const renderButtonTextSave = (form) => {
+  renderLoading(form.submitButton, 'Сохранить');
+}
+
+const editProfile = (form) => {
+  renderButtonTextSaving(form);
+  profileFormElementValidator.disableSubmitButton();
+  return api.setProfileData(form.getInputValues())
+    .then(result => {
+      userInfo.setUserInfo(result);
+      renderButtonTextSaved(form);
+      form.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка выполнения запроса к серверу - ${err}`);
+      renderButtonTextError(form);
+    })
+    .finally(() => {
+      setTimeout(() => {
+        renderButtonTextSave(form);
+      }, 1500);
+    });
 }
 
 const profileEditPopup = new PopupWithForm({ handleFormSubmit: editProfile }, '.popup_content_edit-profile');
@@ -60,11 +93,26 @@ profileEditButton.addEventListener('click', () => { /*Открываем popup �
 /*Ниже - все для аватарки*/
 profileAvatarFormElementValidator.enableValidation();
 
-const changeAvatar = (avatar) => {
-  return api.setProfileAvatar(avatar)
-    .then(res => userInfo.setUserAvatar(res))
-    .catch(err => console.log(err));
+const changeAvatar = (form) => {
+  renderButtonTextSaving(form);
+  profileAvatarFormElementValidator.disableSubmitButton();
+  return api.setProfileAvatar(form.getInputValues())
+    .then(res => {
+      userInfo.setUserAvatar(res)
+      renderButtonTextSaved(form);
+      form.close();
+    })
+    .catch(err => {
+      console.log(`Ошибка выполнения запроса к серверу - ${err}`);
+      renderButtonTextError(form)
+    })
+    .finally(() => {
+      setTimeout(() => {
+        renderButtonTextSave(form);
+      }, 1500);
+    });
 }
+
 
 const avatarEditPopup = new PopupWithForm({ handleFormSubmit: changeAvatar }, '.popup_content_edit-avatar');
 avatarEditPopup.setEventListeners();
@@ -73,7 +121,7 @@ avatarEditButton.addEventListener('click', () => {
   profileAvatarFormElementValidator.disableSubmitButton();
   profileAvatarFormElementValidator.resetValidation();
   avatarEditPopup.open();
-})
+});
 
 
 /*Ниже - все для фотокарточек*/
@@ -120,11 +168,26 @@ const createCard = ({data}) => {/*Функция cоздания фотокар�
    photoCardsList.setItem(createCard({data: card}));
 };
 
-const addCard = (data) => {
-  return api.addCard(data)
-    .then(data => renderCard(data))
-    .catch(err => console.log(err));
+const addCard = (form) => {
+  renderButtonTextSaving(form);
+  photoFormElementValidator.disableSubmitButton();
+  return api.addCard(form.getInputValues())
+    .then(data => {
+      renderCard(data);
+      renderButtonTextSaved(form);
+      form.close();
+    })
+    .catch(err => {
+      console.log(`Ошибка выполнения запроса к серверу - ${err}`);
+      renderButtonTextError(form)
+    })
+    .finally(() => {
+      setTimeout(() => {
+        renderButtonTextSave(form);
+      }, 1500);
+    });
 }
+
 
 const cardDeleteConfirmPopup = new PopupWithConfirmation({ handleFormSubmit: deleteCard }, '.popup_content_confirmation');
 cardDeleteConfirmPopup.setEventListeners();

@@ -60,6 +60,10 @@ export class FormValidator {
     this._formSubmitButton.setAttribute('disabled', true);
   }
 
+  enableSubmitButton() {
+    this._formSubmitButton.removeAttribute('disabled');
+  }
+
   enableValidation(){
      this._setEventListeners();
   }
