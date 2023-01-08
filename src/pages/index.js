@@ -37,7 +37,7 @@ const photoCardsList = new Section({
   }}, '.elements__list')
 
 
-
+/*Тест */
 
 /*Ниже - все для профиля*/
 profileFormElementValidator.enableValidation(); /*Включаем валидацию*/
